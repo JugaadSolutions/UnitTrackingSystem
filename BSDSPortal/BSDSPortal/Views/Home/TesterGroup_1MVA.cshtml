@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "TesterGroup_1MVA";
+}
+
+<div id="jqxTree">
+    <ul>
+        <li item-selected='true'>Home</li>
+        <li item-expanded='true'>
+            Solutions
+            <ul>
+                <li>Education</li>
+                <li>Financial services</li>
+                <li id="government">Government</li>
+                <li>Manufacturing</li>
+                <li>
+                    Solutions
+                    <ul>
+                        <li>Consumer photo and video</li>
+                        <li>Mobile</li>
+                    </ul>
+                </li>
+                <li>All industries and solutions</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+@section scripts
+     {
+    <script type="text/javascript">
+        $(function () {
+
+           
+
+
+            $('#jqxTree').jqxTree({
+                height: '300px',
+                width: '300px',
+                theme: 'energyblue'
+
+            });
+
+           
+        });
+    </script>
+}
+
+
+
+

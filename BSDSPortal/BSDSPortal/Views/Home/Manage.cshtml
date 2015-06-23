@@ -1,0 +1,48 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+@Scripts.Render("~/bundle/jquery")
+<script type="text/javascript">
+    $(function () {
+
+        $('#ManageModelbtn').click(function () {
+            document.location = '@Url.Action("Index","ProductModels")';
+        })
+        $('#ManageFamilybtn').click(function () {
+            document.location = '@Url.Action("Index","Families")';
+        })
+
+        $('#ManageTestersbtn').click(function () {
+            document.location = '@Url.Action("Index","Testers")';
+        })
+        $('#ManageBaysbtn').click(function () {
+            document.location = '@Url.Action("Index","Bays")';
+        })
+
+    
+
+        $('#ManageTeambtn').click(function () {
+            document.location = '@Url.Action("Index","Members")';
+        })
+     
+
+    })
+    </script>
+
+}
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div class="responsive-container">
+    <h2>Manage</h2>
+    <button type="button" id="ManageFamilybtn" class="btn btn-lg btn-primary" >Product Family</button>
+    <button type="button" id="ManageModelbtn" class="btn btn-lg btn-primary"  >Models</button>
+    <button type="button" id="ManageTestersbtn" class="btn btn-lg btn-primary">Testers</button>
+    <button type="button" id="ManageBaysbtn" class="btn btn-lg btn-primary">Bays</button>
+    <button type="button" id="ManageTeambtn" class="btn btn-lg btn-primary">Team</button>
+    
+
+</div>
+
+
