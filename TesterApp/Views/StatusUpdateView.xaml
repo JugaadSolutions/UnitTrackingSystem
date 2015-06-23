@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="TesterApp.Views.StatusUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:TesterApp.Views"
+            Background="Green">
+    <Grid Background="Green">
+        <Button Name="StatusUpdateButton" Click="StatusUpdateButton_Click" HorizontalAlignment="Right" 
+                Height="50" Width="50" VerticalAlignment="Bottom" >
+            <Grid>
+                <Image Name="FaultButtonImage" Source="../Images/Fault.png" Visibility="Collapsed" ToolTip="Break Down"/>
+                <Image Name="OKButtonImage" Source="../Images/OK.jpg" Visibility="Collapsed" ToolTip="Ready"/>
+            </Grid>
+        </Button>
+        <Popup Name="StatusDataPopup">
+            <views:StatusDataView x:Name="StatusDataView"/>
+        </Popup>
+    </Grid>
+</UserControl>

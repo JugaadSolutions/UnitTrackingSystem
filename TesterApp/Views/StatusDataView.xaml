@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="TesterApp.Views.StatusDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            Background="Green" MinWidth="400" MinHeight="200" BorderBrush="White" BorderThickness="4" 
+             Loaded="UserControl_Loaded">
+    <Grid Background="Green">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Label Name="HeaderLabel"  FontSize="24" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="White"
+               HorizontalContentAlignment="Center" MinHeight="50"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+            <Label Content="Engineer ID:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
+            <TextBox Name="EngineerIDTextBox" MinWidth="200" FontSize="20" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center"/>
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5" >
+            <Label Content="Remarks:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="20" Foreground="White" MinWidth="120" VerticalAlignment="Center"/>
+            <TextBox Name="RemarksTextBox" MinWidth="200" FontSize="20" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" MinHeight="100"/>
+
+        </StackPanel>
+
+        <Grid Grid.Row="3" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        
+        <Button  Name="StatusDataUpdateButton" Content="UPDATE" FontSize="20" HorizontalAlignment="Right" 
+                VerticalAlignment="Center" Margin="5" MinWidth="100"/>
+            <Button Grid.Column="1" Name="StatusCancelButton" Content="CANCEL" FontSize="20" HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Margin="5" MinWidth="100"/>
+            
+
+        </Grid>
+
+    </Grid>
+</UserControl>

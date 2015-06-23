@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="TesterApp.Views.Bays.BayActiveView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:TesterApp.Views"
+            Background="Green"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <Style x:Key="ProgressBarStyle"  TargetType="{x:Type ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid MinHeight="30" MinWidth="500">
+                            
+                            <Border Name="PART_Track" CornerRadius="2" BorderBrush="Transparent" BorderThickness="1" >
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="Lime" Offset="0.5" ></GradientStop>
+                                            <GradientStop Color="red" Offset="0.5" ></GradientStop>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Border 
+                                    Name="PART_Indicator" 
+                                    CornerRadius="2" 
+                                    Background="Gray" 
+                                    BorderBrush="Transparent" 
+                                    BorderThickness="1" 
+                                    HorizontalAlignment="Right" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Green">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+            <Label Content="Engineer ID:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
+            <TextBox Name="EngineerIDTextBox" MinWidth="150" FontSize="20" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+            <Label Content="Model:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
+            <TextBox Name="ModelTextBox" MinWidth="150" FontSize="20" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+            <Label Content="Serial No:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+            	FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
+            <TextBox Name="SerialNoTextBox" MinWidth="150" FontSize="20" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+        <ProgressBar  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TestCycleProgressBar"
+                     Style="{StaticResource ResourceKey=ProgressBarStyle}"  Minimum="0" Maximum="200"/>
+            <TextBlock Name="PercentageTextBlock" HorizontalAlignment="Center" FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        
+        <Button Name="PassButton"  Content="PASS" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                MinWidth="150" Margin="5" />
+
+            <Button Name="FailButton" Grid.Column="1" Content="FAIL" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                MinWidth="150" Margin="5" />
+
+        </Grid>
+        <Popup Name="StatusDataPopup">
+            <views:StatusDataView x:Name="StatusDataView" />
+        </Popup>
+
+    </Grid>
+</UserControl>
