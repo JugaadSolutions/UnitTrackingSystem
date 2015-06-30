@@ -16,20 +16,16 @@ namespace BSDSPortal.Models
         [Index("SerialNoIndex", IsUnique = true)]
         public String SerialNo { get; set; }
 
-        public int ProductModelID { get; set; }
+        public int? ProductModelID { get; set; }
         public virtual ProductModel ProductModel { get; set; }
 
         public UNIT_STATUS Status { get; set; }
 
-        public int DespatchedFrom { get; set; }
-        public DateTime DespatchedAt { get; set; }
-        public int DespatchedBy { get; set; }
+        public TransactionParameters DispatchParams { get; set; }
+        public TransactionParameters ReceiveParams { get; set; }
+        public TransactionParameters ReleaseParams { get; set; }
 
-        public int ReceivedBy { get; set; }
-        public DateTime ReceivedAt { get; set; }
-
-        public int ReleasedBy { get; set; }
-        public DateTime ReleasedAt { get; set; }
+     
 
         public ICollection<TestCycle> TestCycles { get; set; }
 

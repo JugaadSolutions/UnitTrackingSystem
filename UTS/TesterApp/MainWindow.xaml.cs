@@ -35,7 +35,7 @@ namespace TesterApp
 
 
 
-            using (BSDSContext db = new BSDSContext())
+            using (EntityModel db = new EntityModel())
             {
                 tester = db.Testers.SingleOrDefault(t => t.Name == testerTag);
                 if (tester == null)

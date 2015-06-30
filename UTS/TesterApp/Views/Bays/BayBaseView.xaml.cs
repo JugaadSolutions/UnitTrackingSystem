@@ -15,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using TesterApp;
-using TesterApp.Models;
 using TesterApp.Views;
 namespace TesterApp.Views.Bays
 {
@@ -31,7 +30,7 @@ namespace TesterApp.Views.Bays
         
 
         TestUnit tu;
-        UnitTestCycle cycle;
+        TestCycle cycle;
         ProductModel p;
         TestTransaction transaction;
         StatusUpdateView sv ;
@@ -58,7 +57,7 @@ namespace TesterApp.Views.Bays
 
                 switch (Bay.Status)
                 {
-                    case 0:
+                    case 0: //BAY Idle
 
                         brv = new BayReadyView();
                         brv.StartButton.Click += StartButton_Click;
@@ -72,19 +71,19 @@ namespace TesterApp.Views.Bays
                         StatusUpdateViewGrid.Children.Add(sv);
                         break;
 
-                    case 2:
-                        using (var db = new BSDSContext())
+                    case 2: //Bay Active
+                        using (var db = new EntityModel())
                         {
                             Bay = db.Bays.Include("TestTransactions").SingleOrDefault(b => b.BayID == BayID);
 
-                            transaction = Bay.TestTransactions.Last(b => b.Status == 0);
-                            cycle = transaction.UnitTestCycle;
+                            transaction = Bay.TestTransactions.Last(b => b.TransactionParameters_Status == 0);
+                            cycle = transaction.TestCycle;
                             tu = cycle.TestUnit;
 
-                            bav = new BayActiveView(transaction.UnitTestCycle.StartTimestamp,
-                                transaction.UnitTestCycle.TestUnit.ProductModel.CycleTime.Value);
+                            bav = new BayActiveView(transaction.TestCycle.StartTimestamp,
+                                transaction.TestCycle.TestUnit.ProductModel.CycleTime.Value);
 
-                            bav.EngineerIDTextBox.Text = transaction.EngineerID;
+                            bav.EngineerIDTextBox.Text = transaction.TransactionParameters_OperatorID;
                             bav.SerialNoTextBox.Text = tu.SerialNo;
                             bav.ModelTextBox.Text = tu.ProductModel.Name;
 
@@ -102,7 +101,7 @@ namespace TesterApp.Views.Bays
                         }
                         break;
 
-                    case 1:
+                    case 1: //Bay Breakdown
 
                         MainGrid.Children.Clear();
                         Image FaultImage = new Image();
@@ -128,33 +127,21 @@ namespace TesterApp.Views.Bays
         }
 
    
-        void createNewTestUnit()
-        {
-            DateTime ts = DateTime.Now;
 
-            tu = new TestUnit(p.ProductModelID, 0, brv.SerialNoTextBox.Text);
-
-            cycle = new UnitTestCycle(ts, 0);
-
-            transaction = new TestTransaction(Bay.BayID, brv.EngineerIDTextBox.Text, ts, "", 0);
-            cycle.TestTransactions.Add(transaction);
-
-            tu.UnitTestCycles.Add(cycle);
-        }
 
         void updateTestCycle(int cycleStatus, int transactionStatus)
         {
-            using (BSDSContext db = new BSDSContext())
+            using (EntityModel db = new EntityModel())
             {
                 DateTime ts = DateTime.Now;
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
                 tu = db.TestUnits.Include("UnitTestCycles").Include("UnitTestCycles.TestTransactions")
                     .SingleOrDefault(t => t.TestUnitID == tu.TestUnitID);
-                cycle = tu.UnitTestCycles.First(c => c.UnitTestCycleID == cycle.UnitTestCycleID);
+                cycle = tu.TestCycles.First(c => c.TestCycleID == cycle.TestCycleID);
 
 
                 transaction = new TestTransaction(Bay.BayID,
-                    bav.EngineerIDTextBox.Text, ts, sv.StatusDataView.RemarksTextBox.Text, transactionStatus, cycle.UnitTestCycleID);
+                    bav.EngineerIDTextBox.Text, ts, sv.StatusDataView.RemarksTextBox.Text, transactionStatus, cycle.TestCycleID);
                 cycle.TestTransactions.Add(transaction);
                 cycle.Status = cycleStatus;
                 cycle.EndTimestamp = ts;
@@ -248,7 +235,7 @@ namespace TesterApp.Views.Bays
                 return;
             }
 
-            using (BSDSContext db = new BSDSContext())
+            using (EntityModel db = new EntityModel())
             {
                 p = db.ProductModels.SingleOrDefault(m => m.Name == brv.ModelTextBox.Text);
                  tu = db.TestUnits
@@ -264,7 +251,7 @@ namespace TesterApp.Views.Bays
 
                         Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);
 
-                        createNewTestUnit();
+                       
 
                         db.TestUnits.Add(tu);
 
@@ -314,12 +301,12 @@ namespace TesterApp.Views.Bays
 
         void ResumeButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            using (BSDSContext db = new BSDSContext())
+
+            using (EntityModel db = new EntityModel())
             {
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
                 transaction = new TestTransaction(Bay.BayID, brv.EngineerIDTextBox.Text, DateTime.Now, brv.RestartResumeView.RemarksTextBox.Text, 0);
-                UnitTestCycle cycle = (db.UnitTestCycles.Include("TestTransactions").Where(c => c.TestUnitID == tu.TestUnitID)
+                TestCycle cycle = (db.TestCycles.Include("TestTransactions").Where(c => c.TestUnitID == tu.TestUnitID)
                                         .OrderByDescending(c => c.StartTimestamp)
                                         .ToList())[0];
                 cycle.TestTransactions.Add(transaction);
@@ -341,18 +328,18 @@ namespace TesterApp.Views.Bays
 
         void RestartButton_Click(object sender, RoutedEventArgs e)
         {
-            using (BSDSContext db = new BSDSContext())
+            using (EntityModel db = new EntityModel())
             {
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
                 tu = db.TestUnits.Include("UnitTestCycles")
                     .SingleOrDefault(t => t.TestUnitID == tu.TestUnitID);
                 DateTime ts = DateTime.Now;
-                cycle = new UnitTestCycle(tu.TestUnitID,ts, 0);
+                cycle = new TestCycle(tu.TestUnitID,ts, 0);
                 transaction = new TestTransaction(Bay.BayID,brv.EngineerIDTextBox.Text,
                     ts,brv.RestartResumeView.RemarksTextBox.Text,0);
 
                 cycle.TestTransactions.Add(transaction);
-                tu.UnitTestCycles.Add(cycle);
+                tu.TestCycles.Add(cycle);
                 Bay.Status = 2;
                 db.SaveChanges();
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
@@ -380,17 +367,17 @@ namespace TesterApp.Views.Bays
         void StatusDataUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             sv.StatusDataPopup.IsOpen = false;
-            
 
-            using (BSDSContext db = new BSDSContext())
+
+            using (EntityModel db = new EntityModel())
             {
                 if( sv.Status == true )
                 {
                     if (Bay.Status == 2 )
                     {
-                        int testcycleId = cycle.UnitTestCycleID;
+                        int testcycleId = cycle.TestCycleID;
                         Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);
-                        cycle = db.UnitTestCycles.Include("TestTransactions").Where(c => c.UnitTestCycleID == testcycleId).Single();
+                        cycle = db.TestCycles.Include("TestTransactions").Where(c => c.TestCycleID == testcycleId).Single();
                         transaction = new TestTransaction(BayID, sv.StatusDataView.EngineerIDTextBox.Text,
                             DateTime.Now, sv.StatusDataView.RemarksTextBox.Text, 3, testcycleId);
                         cycle.TestTransactions.Add(transaction);
@@ -424,11 +411,11 @@ namespace TesterApp.Views.Bays
             if (Bay.Status == 2)
             {
 
-                using (BSDSContext db = new BSDSContext())
+                using (EntityModel db = new EntityModel())
                 {
-                    int testcycleId = cycle.UnitTestCycleID;
+                    int testcycleId = cycle.TestCycleID;
                     Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);
-                    cycle = db.UnitTestCycles.Include("TestTransactions").Where(c => c.UnitTestCycleID == testcycleId).Single();
+                    cycle = db.TestCycles.Include("TestTransactions").Where(c => c.TestCycleID == testcycleId).Single();
                     transaction = new TestTransaction(BayID, sv.StatusDataView.EngineerIDTextBox.Text,
                         DateTime.Now, sv.StatusDataView.RemarksTextBox.Text, 4, testcycleId);
                     cycle.TestTransactions.Add(transaction);

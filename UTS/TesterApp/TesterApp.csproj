@@ -63,73 +63,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Bay.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BayBreakdown.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BSDS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BSDS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BSDS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BSDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BSDS.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Bay.cs" />
+    <Compile Include="BayBreakdown.cs" />
     <Compile Include="Clock\ClockDisplay.xaml.cs">
       <DependentUpon>ClockDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Family.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Location.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Member.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TestUnitFactory.cs" />
-    <Compile Include="ProductModel.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sector.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Shift.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StatusInfo.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tester.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TesterBreakdown.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TestTransaction.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TestUnit.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UnitTestCycle.cs">
-      <DependentUpon>BSDS.tt</DependentUpon>
-    </Compile>
+    <Compile Include="EntityModel.cs" />
+    <Compile Include="Family.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="ProductModel.cs" />
+    <Compile Include="Sector.cs" />
+    <Compile Include="Shift.cs" />
+    <Compile Include="TestCycle.cs" />
+    <Compile Include="Tester.cs" />
+    <Compile Include="TesterBreakdown.cs" />
+    <Compile Include="TestTransaction.cs" />
+    <Compile Include="TestUnit.cs" />
     <Compile Include="ViewModels\TestTransactionVM.cs" />
     <Compile Include="ViewModels\TestUnitVM.cs" />
-    <Compile Include="ViewModels\UnitTestCycleVM.cs" />
+    <Compile Include="ViewModels\TestCycleVM.cs" />
     <Compile Include="Views\Bays\BayActiveView.xaml.cs">
       <DependentUpon>BayActiveView.xaml</DependentUpon>
     </Compile>
@@ -216,23 +169,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="BSDS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BSDS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="BSDS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BSDS.edmx</DependentUpon>
-      <LastGenOutput>BSDS.Context.cs</LastGenOutput>
-    </None>
-    <None Include="BSDS.edmx.diagram">
-      <DependentUpon>BSDS.edmx</DependentUpon>
-    </None>
-    <None Include="BSDS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BSDS.edmx</DependentUpon>
-      <LastGenOutput>BSDS.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

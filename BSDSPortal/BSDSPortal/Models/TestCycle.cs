@@ -8,7 +8,7 @@ namespace BSDSPortal.Models
     public enum TestCycleStatus { INPROGRESS, ONTIME,DELAYED,EARLY, FAILED, PAUSED };
     public class TestCycle
     {
-        public int UnitTestCycleID { get; set; }
+        public int TestCycleID { get; set; }
         public DateTime StartTimestamp { get; set; }
         public Nullable<DateTime> EndTimestamp { get; set; }
 

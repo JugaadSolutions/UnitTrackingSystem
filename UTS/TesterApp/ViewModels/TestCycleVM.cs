@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TesterApp
 {
-    public partial class UnitTestCycle
+    public partial class TestCycle
     {
-        public UnitTestCycle( DateTime ts, int status)
+        public TestCycle( DateTime ts, int status)
         {
             
             this.StartTimestamp = ts;
@@ -17,7 +17,7 @@ namespace TesterApp
             
         }
 
-        public UnitTestCycle(int tID,DateTime ts, int status)
+        public TestCycle(int tID,DateTime ts, int status)
         {
             this.TestUnitID = tID;
             this.StartTimestamp = ts;

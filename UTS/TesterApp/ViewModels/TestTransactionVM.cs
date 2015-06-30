@@ -10,21 +10,21 @@ namespace TesterApp
     {
         public TestTransaction(int bID, String eID, DateTime ts, String remarks, int Status)
         {
-            this.EngineerID = eID;
-            this.Remarks = remarks;
-            this.Status = Status;
-            this.Timestamp = ts;
+            this.TransactionParameters_OperatorID= eID;
+            this.TransactionParameters_Remarks = remarks;
+            this.TransactionParameters_Status = Status;
+            this.TransactionParameters_Timestamp = ts;
             this.BayID = bID;
         }
 
         public TestTransaction(int bID, String eID, DateTime ts, 
             String remarks, int Status,int cycleID)
         {
-            this.UnitTestCycleID = cycleID;
-            this.EngineerID = eID;
-            this.Remarks = remarks;
-            this.Status = Status;
-            this.Timestamp = ts;
+            this.TestCycleID = cycleID;
+            this.TransactionParameters_OperatorID = eID;
+            this.TransactionParameters_Remarks = remarks;
+            this.TransactionParameters_Status = Status;
+            this.TransactionParameters_Timestamp = ts;
             this.BayID = bID;
         }
 

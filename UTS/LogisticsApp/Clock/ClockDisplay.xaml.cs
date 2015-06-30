@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TesterApp
+namespace LogisticsApp
 {
     /// <summary>
     /// Interaction logic for ClockDisplay.xaml

@@ -23,6 +23,8 @@ namespace TesterApp.Views.Tester
     /// </summary>
     public partial class TesterBaseView : UserControl
     {
+        public enum TesterStatus { ACTIVE =0 , BREAKDOWN = 1}
+        public enum TesterBreakdownStatus { OPEN = 1, CLOSED = 0 }
         TesterApp.Tester Tester;
 
         StatusUpdateView sv;
@@ -33,7 +35,7 @@ namespace TesterApp.Views.Tester
         {
             InitializeComponent();
 
-            using (BSDSContext db = new BSDSContext())
+            using (EntityModel db = new EntityModel())
             {
                 Tester = db.Testers.Include("Bays").SingleOrDefault(t => t.Name == name);
                 
@@ -50,13 +52,13 @@ namespace TesterApp.Views.Tester
 
         void createTesterView()
         {
-            using (BSDSContext db = new BSDSContext())
+            using (EntityModel db = new EntityModel())
             {
                 Tester = db.Testers.Include("Bays").SingleOrDefault(t => t.TesterID == Tester.TesterID);
             }
             switch (Tester.Status)
             {
-                case 0:
+                case 0:         //Tester is Active
                     sv = new StatusUpdateView(true, "Tester Breakdown Info");
                     sv.StatusDataView.StatusDataUpdateButton.Click += StatusDataUpdateButton_Click;
                     sv.StatusDataView.StatusCancelButton.Click += StatusCancelButton_Click;
@@ -77,7 +79,7 @@ namespace TesterApp.Views.Tester
                     }
                     break;
 
-                case 1:
+                case 1:     //Tester Breakdown
                     sv = new StatusUpdateView(false, "Tester Ready Info");
                     sv.StatusDataView.StatusDataUpdateButton.Click += StatusDataUpdateButton_Click;
                     StatusUpdateViewGrid.Children.Clear();
@@ -109,27 +111,44 @@ namespace TesterApp.Views.Tester
         void StatusDataUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             sv.StatusDataPopup.IsOpen = false;
-            if (sv.Status == true)
-            {
-                foreach (UIElement u in MainGrid.Children)
-                {
-                    ((BayBaseView)u).AddTesterBreakDownTransaction();
-                }
-            }
-
-            using (BSDSContext db = new BSDSContext())
+            TesterBreakdown bd;
+            using (EntityModel db = new EntityModel())
             {
                 Tester = db.Testers.Include("TesterBreakdowns").SingleOrDefault(t => t.TesterID == Tester.TesterID);
 
-                StatusInfo sInfo = new StatusInfo();
-                sInfo.EngineerID = sv.StatusDataView.EngineerIDTextBox.Text;
-                sInfo.Remarks = sv.StatusDataView.RemarksTextBox.Text;
 
-                sInfo.Status = 
+                if ((TesterStatus)Tester.Status == TesterStatus.ACTIVE)
+                {
+                    foreach (UIElement u in MainGrid.Children)
+                    {
+                        ((BayBaseView)u).AddTesterBreakDownTransaction();
+                    }
+
+                    bd = new TesterBreakdown();
+                    bd.BeginParameters_Location = (String)LocationTag.Content;
+                    bd.BeginParameters_OperatorID = sv.StatusDataView.EngineerIDTextBox.Text;
+                    bd.BeginParameters_Remarks = sv.StatusDataView.RemarksTextBox.Text;
+                    bd.BeginParameters_Timestamp = DateTime.Now;
+                    bd.Status = (int)TesterBreakdownStatus.OPEN;
+                    Tester.TesterBreakdowns.Add(bd);
+                    Tester.Status = (int)TesterStatus.BREAKDOWN;
+                }
+
+                else if ((TesterStatus)Tester.Status == TesterStatus.BREAKDOWN)
+                {
+                    List<TesterBreakdown> bdList = Tester.TesterBreakdowns.ToList();
+                    bd = bdList.Find(x => x.Status == (int)TesterBreakdownStatus.OPEN);
+
+                    bd.Status = (int)TesterBreakdownStatus.CLOSED;
+                    bd.EndParameters_Location = (String)LocationTag.Content;
+                    bd.EndParameters_OperatorID = sv.StatusDataView.EngineerIDTextBox.Text;
+                    bd.EndParameters_Remarks = sv.StatusDataView.RemarksTextBox.Text;
+                    bd.EndParameters_Timestamp = DateTime.Now;
 
 
+                }
 
-                Tester.Status = (Tester.Status == 0) ? 1 : 0;
+
 
                 db.SaveChanges();
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Background,

@@ -1,8 +1,33 @@
 ﻿<Window x:Class="LogisticsApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        xmlns:local="clr-namespace:LogisticsApp" 
+        xmlns:loginview="clr-namespace:LogisticsApp.Views"
+        Title="UTS - Logistics App" WindowStartupLocation="CenterScreen" Height="600" Width="800"
         
+        Background="Green" >
+    
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"  Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.25*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="/Images/schneider_logo.jpg"/>
+            <TextBlock Grid.Column="1" FontSize="30" Foreground="White" Text="UNIT TRACKING SYSTEM &#xA; LOGISTICS APP" 
+                                       HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Center" TextAlignment="Center" />
+            <local:ClockDisplay Grid.Column="2" x:Name="SystemClock1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+        </Grid>
+        
+        <Grid Grid.Row="1" Name="DashboardGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+          
+        </Grid>
     </Grid>
 </Window>

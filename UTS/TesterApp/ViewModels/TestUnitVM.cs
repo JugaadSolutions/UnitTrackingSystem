@@ -14,7 +14,7 @@ namespace TesterApp
             this.ProductModelID = pID;
             this.Status = Status;
             this.SerialNo = sNo;
-            this.UnitTestCycles = new HashSet<UnitTestCycle>();
+            this.TestCycles = new HashSet<TestCycle>();
 
         }
 

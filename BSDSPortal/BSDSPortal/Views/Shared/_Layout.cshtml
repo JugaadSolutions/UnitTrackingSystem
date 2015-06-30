@@ -78,7 +78,7 @@
                         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Communication
                     </button>
 
-                    <button type="button" class="btn btn-default btn-lg">
+                    <button id="Managebtn" type="button" class="btn btn-default btn-lg">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Manage
                     </button>
                 </div>
@@ -109,6 +109,10 @@
 
 
         $('.roundedDiv').corner('keep 10px');
+        $('#Managebtn').click(function () {
+            document.location = '@Url.Action("Manage","Home")';
+        })
+
     });
     </script>
     @RenderSection("scripts", required: false)

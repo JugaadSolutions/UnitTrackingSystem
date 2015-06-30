@@ -9,6 +9,8 @@ namespace BSDSPortal.Models
     {
         public int TesterBreakdownID { get; set; }
 
+        public Nullable<int> Status { get; set; }
+
         public TransactionParameters BeginParameters { get; set; }
         public TransactionParameters EndParameters { get; set; }
 
