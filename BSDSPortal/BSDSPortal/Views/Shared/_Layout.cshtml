@@ -33,7 +33,7 @@
 <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top" style="padding:0px">
+    @*<nav class="navbar navbar-default navbar-fixed-top" style="padding:0px">
         <div class="container">
            
             <div id="navbar" class="collapse navbar-collapse">
@@ -42,9 +42,9 @@
                    
                     
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
-    </nav>
+    </nav>*@
 
     <!-- Begin page content -->
     <div class="container" style="padding-top:35px">
@@ -61,40 +61,27 @@
         </div>
         <div class="row">
             <div class="col-md-2 text-center">
-                <div class="btn-group-vertical" style="padding:3px;">
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Real Time
-                    </button>
+               
+                <img src="~/Images/energyEfficiency.jpg" style="max-height:100%;max-width:100%;padding:3px;margin:200px 0px 0px 0px" />
 
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Reports
-                    </button>
-
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Team
-                    </button>
-
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Communication
-                    </button>
-
-                    <button id="Managebtn" type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Manage
-                    </button>
-                </div>
-                <img src="~/Images/energyEfficiency.jpg" style="max-height:100%;max-width:100%;padding:3px;" />
             </div>
             <div class="col-md-10">
                 @RenderBody()
+
             </div>
-        </div>
 
+        </div>
     </div>
-
+    
     <footer class="footer">
-        <div class="container">
-            <p>&copy; Schenider-Electric ITBU</p>
-        </div>
+       
+            <div class="col-md-10 text-center ">
+                <p class="roundedDiv"
+                   style="margin:0px 50px 0px 100px;width:1150px;color:white;font-family:'Arial Rounded MT';font-size:small;background-color:green;border:green medium solid">
+                    &copy; Schenider-Electric ITBU
+                </p>
+            </div>
+       
     </footer>
 
 

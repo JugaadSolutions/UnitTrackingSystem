@@ -743,6 +743,7 @@
     <Content Include="Views\ProductModels\Index.cshtml" />
     <Content Include="Views\Home\RealTime.cshtml" />
     <Content Include="Views\Home\TesterGroup_1MVA.cshtml" />
+    <Content Include="Views\Shared\MenuView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
