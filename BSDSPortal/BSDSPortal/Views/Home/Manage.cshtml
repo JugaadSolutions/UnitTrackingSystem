@@ -33,16 +33,19 @@
 @{
     ViewBag.Title = "Manage";
 }
+ <div class="mang">
+     <div class="rend" style="float:left">
+         @RenderPage("~/Views/Shared/MenuView.cshtml");
+     </div>
+    <div class="responsive-container">
+        <h2>Manage</h2>
+        <button type="button" id="ManageFamilybtn" class="btn btn-lg btn-primary">Product Family</button>
+        <button type="button" id="ManageModelbtn" class="btn btn-lg btn-primary">Models</button>
+        <button type="button" id="ManageTestersbtn" class="btn btn-lg btn-primary">Testers</button>
+        <button type="button" id="ManageBaysbtn" class="btn btn-lg btn-primary">Bays</button>
+        <button type="button" id="ManageTeambtn" class="btn btn-lg btn-primary">Team</button>
 
-<div class="responsive-container">
-    <h2>Manage</h2>
-    <button type="button" id="ManageFamilybtn" class="btn btn-lg btn-primary" >Product Family</button>
-    <button type="button" id="ManageModelbtn" class="btn btn-lg btn-primary"  >Models</button>
-    <button type="button" id="ManageTestersbtn" class="btn btn-lg btn-primary">Testers</button>
-    <button type="button" id="ManageBaysbtn" class="btn btn-lg btn-primary">Bays</button>
-    <button type="button" id="ManageTeambtn" class="btn btn-lg btn-primary">Team</button>
-    
+
+    </div>
 
 </div>
-
-
