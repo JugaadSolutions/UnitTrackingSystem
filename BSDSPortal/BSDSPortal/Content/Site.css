@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 20px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -18,12 +18,12 @@ textarea {
 .responsive-container {
     position: relative;
     width: 100%;
-    padding-top:5%
+    padding-top:0%;
    
 }
 
 .dummy {
-    padding-top: 40%; /* forces 1:1 aspect ratio */
+    //padding-top: 40%; /* forces 1:1 aspect ratio */
 }
 
 .img-container {

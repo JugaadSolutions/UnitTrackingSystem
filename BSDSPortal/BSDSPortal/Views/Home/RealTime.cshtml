@@ -27,34 +27,34 @@
 
 <div class="responsive-container" id="SummaryPanel"></div>
 
-    <div class="container">
-        
-        <ul class="nav nav-tabs">
+    <div class="container" >
+       
+        <ul class="nav nav-tabs" style="margin-top:10px; margin-left:250px;">
             <li class="active"><a data-toggle="tab" href="#home">Unit Status</a></li>
             <li><a data-toggle="tab" href="#menu1">Bay Status</a></li>
-           
-            
-        </ul>
+                    </ul>
 
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
                 <div class="wrap">
-                    <div class="box1" style="padding:10px 5px 5px 5px;margin:15px 0px 0px 0px">
+                    <div class="box1" style="margin-top:10px; margin-left:250px;">
                         <span>From:</span>
                         <input id="datetimepicker1" type="text">
                         <span>To:</span>
                         <input id="datetimepicker2" type="text">
                     </div>
-                    <button type="button" class="btn btn-primary" style="margin-right:1900px;margin-top:15px;width:90px;align-self:center;">Show</button>
+                    <button type="button" class="btn btn-primary" style="margin-top:15px; margin-left:380px;width:90px;">Show</button>
                 </div>
              
             </div>
-            <div id="menu1" class="tab-pane fade">
-               <h2>Hello</h2>
+            <div id="menu1" class="tab-pane fade" style="margin-top:10px; margin-left:250px">
+                <h2>Hello</h2>
                 <p>Im here to give solution</p>
             </div>
            
-           
+            <div class="rend" style="margin-left:0px;margin-top:-140px;margin-bottom:50px;float:left;">
+                @RenderPage("~/Views/Shared/MenuView.cshtml");
+            </div>
         </div>
     </div>
 
