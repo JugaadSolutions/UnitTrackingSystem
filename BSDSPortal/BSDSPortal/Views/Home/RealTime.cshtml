@@ -31,35 +31,35 @@
 }
 
 <div class="responsive-container" id="SummaryPanel"></div>
+<div id="ContentDiv" class="roundedDiv text-center" style="border:green medium solid;border-width:2px;margin:5px 5px 0px 30px; padding:5px 2px 5px 2px">
+    <div class="container">
 
-<div class="container">
+        <ul class="nav nav-tabs" style="margin-top:10px; margin-left:10px;padding-left:10px;margin-bottom:10px;padding-right:0px">
+            <li class="active"><a data-toggle="tab" href="#home">Unit Status</a></li>
+            <li><a data-toggle="tab" href="#menu1">Bay Status</a></li>
+        </ul>
 
-    <ul class="nav nav-tabs" style="margin-top:10px; margin-left:250px;">
-        <li class="active"><a data-toggle="tab" href="#home">Unit Status</a></li>
-        <li><a data-toggle="tab" href="#menu1">Bay Status</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <div class="wrap">
-                <div class="box1" style="margin-top:10px; margin-left:250px;">
-                    <span>From:</span>
-                    <input id="datetimepicker1" type="text">
-                    <span>To:</span>
-                    <input id="datetimepicker2" type="text">
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="wrap">
+                    <div class="box1" style="margin-top:10px; margin-left:-275px;">
+                        <span>From:</span>
+                        <input id="datetimepicker1" type="text">
+                        <span>To:</span>
+                        <input id="datetimepicker2" type="text">
+                    </div>
+                    <button type="button" class="btn btn-primary" style="margin-top:15px; margin-left:-250px;width:90px;margin-bottom:10px;">Show</button>
                 </div>
-                <button type="button" class="btn btn-primary" style="margin-top:15px; margin-left:380px;width:90px;">Show</button>
+
+            </div>
+            <div id="menu1" class="tab-pane fade" style="margin-top:10px; margin-left:-250px;margin-bottom:10px;padding-right:0px">
+                <h2>Hello</h2>
+                <p>Im here to give solution</p>
             </div>
 
+
+
         </div>
-        <div id="menu1" class="tab-pane fade" style="margin-top:10px; margin-left:250px">
-            <h2>Hello</h2>
-            <p>Im here to give solution</p>
-        </div>
-
-
-
     </div>
+
 </div>
-
-
