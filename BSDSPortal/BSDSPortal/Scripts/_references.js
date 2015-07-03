@@ -82,4 +82,6 @@
 /// <reference path="JQWidgets/jqxtreemap.js" />
 /// <reference path="JQWidgets/jqxvalidator.js" />
 /// <reference path="jquery.min.js" />
-/// <reference path="jquery.datetimepicker.js" />
+/// <reference path="moment.js" />
+/// <reference path="bootstrap-datetimepicker.min.js" />
+/// <reference path="jquery-ui.js" />
