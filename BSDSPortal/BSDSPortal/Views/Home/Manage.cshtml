@@ -29,14 +29,17 @@
     </script>
 
 }
+@section menu{
+    @Html.Partial("MenuView")
+}
 
 @{
     ViewBag.Title = "Manage";
 }
  <div class="mang">
-     <div class="rend" style="float:left">
+     @*<div class="rend" style="float:left">
          @RenderPage("~/Views/Shared/MenuView.cshtml");
-     </div>
+     </div>*@
     <div class="responsive-container">
         <h2>Manage</h2>
         <button type="button" id="ManageFamilybtn" class="btn btn-lg btn-primary">Product Family</button>
