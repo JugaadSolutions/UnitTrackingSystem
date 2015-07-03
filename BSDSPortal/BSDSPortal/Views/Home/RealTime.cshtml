@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "RealTime";
 }
 @section styles{
@@ -9,53 +8,58 @@
 
 
 @section scripts {
-    
+
     @Scripts.Render("~/bundle/jquery")
-   
+
 
     <script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/jquery.datetimepicker.js"></script>   
-<script type="text/javascript">
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script type="text/javascript">
 
-    $('#datetimepicker1').datetimepicker();
-    $('#datetimepicker2').datetimepicker();
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
 
 
-</script>
+    </script>
 
+}
+
+@section Menu {
+    <div class="rend" style="margin-left:0px;margin-top:-140px;margin-bottom:50px;float:left;">
+        @RenderPage("~/Views/Shared/MenuView.cshtml");
+    </div>
 }
 
 <div class="responsive-container" id="SummaryPanel"></div>
 
-    <div class="container" >
-       
-        <ul class="nav nav-tabs" style="margin-top:10px; margin-left:250px;">
-            <li class="active"><a data-toggle="tab" href="#home">Unit Status</a></li>
-            <li><a data-toggle="tab" href="#menu1">Bay Status</a></li>
-                    </ul>
+<div class="container">
 
-        <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <div class="wrap">
-                    <div class="box1" style="margin-top:10px; margin-left:250px;">
-                        <span>From:</span>
-                        <input id="datetimepicker1" type="text">
-                        <span>To:</span>
-                        <input id="datetimepicker2" type="text">
-                    </div>
-                    <button type="button" class="btn btn-primary" style="margin-top:15px; margin-left:380px;width:90px;">Show</button>
+    <ul class="nav nav-tabs" style="margin-top:10px; margin-left:250px;">
+        <li class="active"><a data-toggle="tab" href="#home">Unit Status</a></li>
+        <li><a data-toggle="tab" href="#menu1">Bay Status</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <div class="wrap">
+                <div class="box1" style="margin-top:10px; margin-left:250px;">
+                    <span>From:</span>
+                    <input id="datetimepicker1" type="text">
+                    <span>To:</span>
+                    <input id="datetimepicker2" type="text">
                 </div>
-             
+                <button type="button" class="btn btn-primary" style="margin-top:15px; margin-left:380px;width:90px;">Show</button>
             </div>
-            <div id="menu1" class="tab-pane fade" style="margin-top:10px; margin-left:250px">
-                <h2>Hello</h2>
-                <p>Im here to give solution</p>
-            </div>
-           
-            <div class="rend" style="margin-left:0px;margin-top:-140px;margin-bottom:50px;float:left;">
-                @RenderPage("~/Views/Shared/MenuView.cshtml");
-            </div>
+
         </div>
+        <div id="menu1" class="tab-pane fade" style="margin-top:10px; margin-left:250px">
+            <h2>Hello</h2>
+            <p>Im here to give solution</p>
+        </div>
+
+
+
     </div>
+</div>
 
 

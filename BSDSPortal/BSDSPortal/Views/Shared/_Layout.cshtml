@@ -17,7 +17,7 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-   
+
 
     @RenderSection("styles", required: false)
 
@@ -31,26 +31,10 @@
 </head>
 
 <body>
-
-    <!-- Fixed navbar -->
-    @*<nav class="navbar navbar-default navbar-fixed-top" style="padding:0px">
-        <div class="container">
-           
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Layout</a></li>
-                   
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>*@
-
-    <!-- Begin page content -->
-    <div class="container" style="padding-top:35px">
+    <div class="container" >
         <div class="row">
             <div class="col-md-2">
-                <img src="~/Images/schneider_logo.jpg" />
+                <img src="~/Images/schneider_logo.jpg" height="30" />
             </div>
             <div class="col-md-10 text-center ">
                 <p class="roundedDiv"
@@ -60,15 +44,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 text-center">
-                <div class="menu1" style="align-self:center">
+            @if (IsSectionDefined("Menu"))
+            {
+                <div class="col-md-2 text-center">
+                    <div class="menu1" style="align-self:center">
 
-                    @RenderSection("left", required: false);
+                        @RenderSection("Menu", required: false);
+                    </div>
+
+
+
                 </div>
-                
-               
-
-            </div>
+            }
             <div class="col-md-10">
                 @RenderBody()
 
@@ -76,16 +63,16 @@
 
         </div>
     </div>
-    
+
     <footer class="footer">
-       
-            <div class="col-md-10 text-center">
-                <p class="roundedDiv"
-                   style="margin:0px 50px 0px 100px;width:1150px;color:white;font-family:'Arial Rounded MT';font-size:small;background-color:green;border:green medium solid">
-                    &copy; Schenider-Electric ITBU
-                </p>
-            </div>
-       
+
+        <div class="col-md-10 text-center">
+            <p class="roundedDiv"
+               style="margin:0px 50px 0px 100px;width:1150px;color:white;font-family:'Arial Rounded MT';font-size:small;background-color:green;border:green medium solid">
+                &copy; Schenider-Electric ITBU
+            </p>
+        </div>
+
     </footer>
 
 
@@ -93,26 +80,23 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/JQWidgets")
     @Styles.Render("~/Content/JQStyles")
-    
+
     <script src="~/Scripts/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">
-    $(function () {
+        $(function () {
 
 
-       $('.roundedDiv').corner('keep 10px');
-        $('#Managebtn').click(function () {
-            document.location = '@Url.Action("Manage","Home")';
-        })
-        $('#Realbtn').click(function () {
-            document.location = '@Url.Action("RealTime","Home")';
-        })
-    });
+            $('.roundedDiv').corner('keep 10px');
+            $('#Managebtn').click(function () {
+                document.location = '@Url.Action("Manage","Home")';
+            })
+            $('#Realbtn').click(function () {
+                document.location = '@Url.Action("RealTime","Home")';
+            })
+        });
     </script>
     @RenderSection("scripts", required: false)
 
 
 </body>
 </html>
-
-
-
