@@ -179,6 +179,7 @@
     <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\SectorsController.cs" />
     <Compile Include="Controllers\TestersController.cs" />
+    <Compile Include="Controllers\UnitStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +223,7 @@
     <Compile Include="Models\TestTransaction.cs" />
     <Compile Include="Models\TestCycle.cs" />
     <Compile Include="Models\TestUnit.cs" />
+    <Compile Include="Models\UnitStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -767,6 +769,7 @@
     <Content Include="Views\Home\RealTime.cshtml" />
     <Content Include="Views\Home\TesterGroup_1MVA.cshtml" />
     <Content Include="Views\Shared\MenuView.cshtml" />
+    <Content Include="Views\UnitStatus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
