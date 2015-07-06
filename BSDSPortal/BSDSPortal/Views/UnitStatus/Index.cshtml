@@ -3,10 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-@section menu
-{
-@Html.Partial("MenuView")
-} 
+
 @section styles{
     <style type="text/css">
         .wrap{
@@ -21,12 +18,12 @@
                 
               width:150px;
               height:130px;
-                padding:3px;
+                padding:5px;
                 margin:10px 5px 0px 5px;
                display:inline-block;
         }
         #lbl1{
-            padding:45px 0px 0px 15px;
+            padding:45px 0px 0px 20px;
             
         }
          #img2{
@@ -41,7 +38,7 @@
                 display:inline-block;
         }
         #lbl2{
-            padding:45px 0px 0px 15px;
+            padding:45px 0px 0px 20px;
             
         }
          #img3{
@@ -56,7 +53,7 @@
                 display:inline-block;
         }
         #lbl3{
-            padding:45px 0px 0px 15px;
+            padding:45px 0px 0px 20px;
             
         }
          #img4{
@@ -71,7 +68,7 @@
                 display:inline-block;
         }
         #lbl4{
-            padding:45px 0px 0px 15px;
+            padding:45px 0px 0px 20px;
             
         }
          #img5{
@@ -86,7 +83,7 @@
                 display:inline-block;
         }
         #lbl5{
-            padding:45px 0px 0px 15px;
+            padding:45px 0px 0px 20px;
             
         }
 
@@ -94,22 +91,24 @@
 }
 @section scripts {
 
-   
-@Scripts.Render("~/bundle/jquery")
+ 
     <script type="text/javascript">
         
 
-    $(document).ready(function(){
-    ("#img1").fadeIn(2000);
-    ("#img2,#lbl2").fadeIn(4000);
-     ("#img3,#lbl3").fadeIn(6000);
-     ("#img4,#lbl4").fadeIn(8000);
-     ("#img5,#lbl5").fadeIn(10000);
+    //    $(document).ready(function () {
+    //        $(".wrap").fadeIn(20000);
+    //   $("#img1").fadeIn(22000);
+    //   $("#img2").fadeIn(24000);
+    //   $("#img3").fadeIn(26000);
+    //   $("#img4").fadeIn(28000);
+    // $("#img5").fadeIn(30000);
 
-    });
+    //});
 
     </script>
 }
+
+ 
 <div class="wrap">
     <div id="img1">
         <label id="lbl1">

@@ -85,3 +85,4 @@
 /// <reference path="moment.js" />
 /// <reference path="bootstrap-datetimepicker.min.js" />
 /// <reference path="jquery-ui.js" />
+/// <reference path="jquery-2.1.4.js" />
