@@ -5,89 +5,8 @@
 
 
 @section styles{
-    <style type="text/css">
-        .wrap{
-           display:inline;
-          margin: 0 auto;
-            
-        }
-        #img1  {
-            
-            	background-image: url("../../Images/energyEfficiency.jpg");
-                background-repeat: no-repeat;
-                
-              width:150px;
-              height:130px;
-                padding:5px;
-                margin:10px 5px 0px 5px;
-               display:inline-block;
-        }
-        #lbl1{
-            padding:45px 0px 0px 20px;
-            
-        }
-         #img2{
-            
-            	background-image: url("../../Images/energyEfficiency.jpg");
-                background-repeat: no-repeat;
-                
-              width:150px;
-              height:130px;
-                padding:5px;
-                margin:10px 0px 0px 5px;
-                display:inline-block;
-        }
-        #lbl2{
-            padding:45px 0px 0px 20px;
-            
-        }
-         #img3{
-            
-            	background-image: url("../../Images/energyEfficiency.jpg");
-                background-repeat: no-repeat;
-                
-              width:150px;
-              height:130px;
-                padding:5px;
-                margin:10px 0px 0px 5px;
-                display:inline-block;
-        }
-        #lbl3{
-            padding:45px 0px 0px 20px;
-            
-        }
-         #img4{
-            
-            	background-image: url("../../Images/energyEfficiency.jpg");
-                background-repeat: no-repeat;
-                
-              width:150px;
-              height:130px;
-                padding:5px;
-                margin:10px 0px 0px 5px;
-                display:inline-block;
-        }
-        #lbl4{
-            padding:45px 0px 0px 20px;
-            
-        }
-         #img5{
-            
-            	background-image: url("../../Images/energyEfficiency.jpg");
-                background-repeat: no-repeat;
-                
-              width:150px;
-              height:130px;
-                padding:5px;
-                margin:10px 0px 0px 5px;
-                display:inline-block;
-        }
-        #lbl5{
-            padding:45px 0px 0px 20px;
-            
-        }
-
-    </style>
+   
+   <link href="~/Content/fade.css" type="text/css" rel="stylesheet" />     
 }
 @section scripts {
 
@@ -95,44 +14,65 @@
     <script type="text/javascript">
         
 
-    //    $(document).ready(function () {
-    //        $(".wrap").fadeIn(20000);
-    //   $("#img1").fadeIn(22000);
-    //   $("#img2").fadeIn(24000);
-    //   $("#img3").fadeIn(26000);
-    //   $("#img4").fadeIn(28000);
-    // $("#img5").fadeIn(30000);
-
-    //});
+       
+            //$(window).load(function () {
+            //    var i = 0;
+            //   // var images = ['image2.png', 'image3.png', 'image1.png'];
+            //    var image = $('#slideit');
+            //    //Initial Background image setup
+            //    image.css('background-image', 'url(../../Images/energyEfficiency.jpg)');
+            //    //Change image at regular intervals
+            //    setInterval(function () {
+            //        image.fadeOut(1000, function () {
+            //            image.css('background-image', 'url(../../Images/energyEfficiency.jpg)');
+            //            image.fadeIn(1000);
+            //        });
+                   
+            //    }, 5000);
+            //});  //$("#image").delay(20000);
+            ////$("#image").fadeIn(14000);
+            ////$(".disp").delay(10000);
+            ////$(".disp").fadeIn(3000);
+         
+   
 
     </script>
 }
 
- 
-<div class="wrap">
-    <div id="img1">
-        <label id="lbl1">
-            Dispose
-        </label>
+@*<div class="wrap">
+    <div class="inner">
+        <ul class="un">
+            
+
+        </ul>
+
+    </div>
+
+</div>*@
+<div class="row">
+    <div class="col-md-2">
+        <div class="image-fade">
+            <span style="">Dispatch</span>
         </div>
-    <div id="img2" >
-        <label id="lbl2">
-           Receive
-        </label>
     </div>
-    <div id="img3">
-        <label id="lbl3">
-           Release
-        </label>
+    <div class="col-md-2">
+        <div class="image-fade1">
+            <span style="padding:1000px 10px 0px 15px">Receive</span>
+        </div>
     </div>
-    <div id="img4">
-        <label id="lbl4">
-            Test
-        </label>
+    <div class="col-md-2">
+        <div class="image-fade2">
+            <span style="padding:70px 25px 100px 15px">Release</span>
+        </div>
     </div>
-    <div id="img5">
-        <label id="lbl5">
-            Finish
-        </label>
+    <div class="col-md-2">
+        <div class="image-fade3">
+            <span style="padding:70px 25px 100px 15px">Test</span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="image-fade4">
+            <span style="padding:70px 25px 100px 15px">Finish</span>
+        </div>
     </div>
 </div>

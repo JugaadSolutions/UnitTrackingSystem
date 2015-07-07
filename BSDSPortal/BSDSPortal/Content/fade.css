@@ -1,0 +1,149 @@
+﻿ .image-fade{
+            background-image:url(../../Images/energyEfficiency.jpg);
+             background-repeat: no-repeat;
+                 width:150px;
+              height:130px;
+                padding:1px;
+                margin:10px 0px 0px 1px;
+                -webkit-animation:fadeIn ease-in 1; 
+	-moz-animation:fadeIn ease-in 1;
+	-ms-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+	
+	-webkit-animation-fill-mode:forwards; 
+	-moz-animation-fill-mode:forwards;
+    -ms-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+	
+	-webkit-animation-duration:2s;
+	-moz-animation-duration:2s;
+	-ms-animation-duration:2s;
+	animation-duration:2s;
+}
+
+ @-webkit-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+@-moz-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; } }
+@-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
+@keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+
+ .image-fade1{
+            background-image:url(../../Images/energyEfficiency.jpg);
+             background-repeat: no-repeat;
+                 width:150px;
+              height:130px;
+                padding:1px;
+                margin:10px 0px 0px 1px;
+                -webkit-animation:fadeIn ease-in 1; 
+	-moz-animation:fadeIn ease-in 1;
+	-ms-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+	
+	-webkit-animation-fill-mode:forwards; 
+	-moz-animation-fill-mode:forwards;
+    -ms-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+
+    
+	
+	-webkit-animation-duration:10s;
+	-moz-animation-duration:10s;
+	-ms-animation-duration:10s;
+	animation-duration:10s;
+}
+
+ @-webkit-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+@-moz-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; } }
+@-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
+@keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+
+ .image-fade2{
+            background-image:url(../../Images/energyEfficiency.jpg);
+             background-repeat: no-repeat;
+                 width:150px;
+              height:130px;
+                padding:1px;
+                margin:10px 0px 0px 1px;
+                -webkit-animation:fadeIn ease-in 1; 
+	-moz-animation:fadeIn ease-in 1;
+	-ms-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+	
+	-webkit-animation-fill-mode:forwards; 
+	-moz-animation-fill-mode:forwards;
+    -ms-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+
+    	
+	-webkit-animation-duration:22s;
+	-moz-animation-duration:22s;
+	-ms-animation-duration:22s;
+	animation-duration:22s;
+}
+
+ @-webkit-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+@-moz-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; } }
+@-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
+@keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+ .image-fade3{
+            background-image:url(../../Images/energyEfficiency.jpg);
+             background-repeat: no-repeat;
+                 width:150px;
+              height:130px;
+                padding:1px;
+                margin:10px 0px 0px 1px;
+                -webkit-animation:fadeIn ease-in 1; 
+	-moz-animation:fadeIn ease-in 1;
+	-ms-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+	
+	-webkit-animation-fill-mode:forwards; 
+	-moz-animation-fill-mode:forwards;
+    -ms-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+
+  
+	
+	-webkit-animation-duration:34s;
+	-moz-animation-duration:34s;
+	-ms-animation-duration:34s;
+	animation-duration:34s;
+}
+
+ @-webkit-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+@-moz-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; } }
+@-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
+@keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+
+ .image-fade4{
+            background-image:url(../../Images/energyEfficiency.jpg);
+             background-repeat: no-repeat;
+                 width:150px;
+              height:130px;
+                padding:1px;
+                margin:10px 0px 0px 1px;
+                -webkit-animation:fadeIn ease-in 1; 
+	-moz-animation:fadeIn ease-in 1;
+	-ms-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+	
+	-webkit-animation-fill-mode:forwards; 
+	-moz-animation-fill-mode:forwards;
+    -ms-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+
+   
+	-webkit-animation-duration:46s;
+	-moz-animation-duration:46s;
+	-ms-animation-duration:46s;
+	animation-duration:46s;
+}
+
+ @-webkit-keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+@-moz-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; } }
+@-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
+@keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+
+
+    
+        
+    
