@@ -1,15 +1,12 @@
-﻿ 
-
- .image-fade{
-    background-image:url(../../Images/energyEfficiency.jpg);
+﻿
+.image-fade{
+    background-image: url(../../Images/energyEfficiency.jpg);
     background-repeat: no-repeat;
-width:400px;
-height:1000px;
-background-size:80%; 
- 
-     padding:1px;
-    margin:10px 0px 0px -100px;
+	background-size:100%;
+    width:200px;
+    height:200px;
 	opacity:0;
+
     -webkit-animation:fadeIn ease-in 1; 
 	-moz-animation:fadeIn ease-in 1;
 	-ms-animation:fadeIn ease-in 1;
@@ -32,14 +29,12 @@ background-size:80%;
 @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
 
  .image-fade1{
-          background-image:url(../../Images/energyEfficiency.jpg);
-          background-repeat: no-repeat;
-          width:400px;
-          height:1000px;
-          background-size:80%;
-          padding:1px;
-          margin:10px 70px 0px 50px;
-		  opacity:0;
+        background-image: url(../../Images/energyEfficiency.jpg);
+    background-repeat: no-repeat;
+	background-size:100%;
+    width:200px;
+    height:200px;
+	opacity:0;
           -webkit-animation:fadeIn ease-in 1; 
 	-moz-animation:fadeIn ease-in 1;
 	-ms-animation:fadeIn ease-in 1;
@@ -67,14 +62,12 @@ background-size:80%;
 @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
 
  .image-fade2{
-            background-image:url(../../Images/energyEfficiency.jpg);
-             background-repeat: no-repeat;
-                width:400px;
-          height:1000px;
-          background-size:80%;
-                padding:1px;
-                margin:10px 70px 0px 200px;
-				opacity:0;
+           background-image: url(../../Images/energyEfficiency.jpg);
+    background-repeat: no-repeat;
+	background-size:100%;
+    width:200px;
+    height:200px;
+	opacity:0;
                 -webkit-animation:fadeIn ease-in 1; 
 	-moz-animation:fadeIn ease-in 1;
 	-ms-animation:fadeIn ease-in 1;
@@ -102,15 +95,12 @@ background-size:80%;
 @-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
 @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
  .image-fade3{
-            background-image:url(../../Images/energyEfficiency.jpg);
-             background-repeat: no-repeat;
-                width:400px;
-          height:1000px;
-          background-size:80%;
-                padding:1px;
-                z-index:-1;
-                margin:10px 70px 0px 350px;
-				opacity:0;
+      background-image: url(../../Images/energyEfficiency.jpg);
+    background-repeat: no-repeat;
+	background-size:100%;
+    width:200px;
+    height:200px;
+	opacity:0;
 				
     -webkit-animation:fadeIn ease-in 1; 
 	-moz-animation:fadeIn ease-in 1;
@@ -142,14 +132,12 @@ background-size:80%;
 @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
 
  .image-fade4{
-            background-image:url(../../Images/energyEfficiency.jpg);
-             background-repeat: no-repeat;
-                 width:400px;
-          height:1000px;
-          background-size:80%;
-                padding:1px;
-                margin:10px 70px 0px 480px;
-				opacity:0;
+          background-image: url(../../Images/energyEfficiency.jpg);
+    background-repeat: no-repeat;
+	background-size:100%;
+    width:200px;
+    height:200px;
+	opacity:0;
 				
     -webkit-animation:fadeIn ease-in 1; 
 	-moz-animation:fadeIn ease-in 1;
@@ -178,15 +166,15 @@ background-size:80%;
 @-ms-keyframes fadeIn { 0% { opacity:0; }  100% { opacity:1; }}
 @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
 
- .set{
+
+   .set{
 	  position:absolute;
-	 
-	  	color:#c8c0dd;
-	font-size:32px;
+	  top:70px;
+	  left:70px;
+	  	color:#003;
+	font-size:18px;
 	font-weight:bold;
 	  z-index:2;
    }
-        
-    
         
     
