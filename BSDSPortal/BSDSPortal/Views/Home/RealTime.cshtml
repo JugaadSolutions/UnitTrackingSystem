@@ -7,7 +7,8 @@
     <link href="~/Content/bootstrap-datetimepicker.css" type="text/css" rel="stylesheet" />
     
 <link href="~/Content/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
-  
+
+   <link href="~/Content/tab.css" type="text/css" rel="stylesheet" />
 }
 
 
@@ -35,7 +36,7 @@
          </script>
     <script type="text/javascript">
         $(function () {
-            $("#tabs").tabs();
+            $('#tabs').tabs();
         });
     </script>
 }
@@ -50,55 +51,53 @@
 <div id="ContentDiv" class="roundedDiv text-center" style="border:green medium solid;border-width:2px;margin:20px -10px 300px 0px; padding:5px 2px 5px 2px">
     
 
-        <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Unit Status</a></li>
-                <li><a href="#tabs-2">Bay Status</a></li>
+    <div id="tabs" class="tabs-min">
+        <ul>
+            <li><a href="#tabs-1">Unit Status</a></li>
+            <li><a href="#tabs-2">Bay Status</a></li>
 
-            </ul>
+        </ul>
 
-            <div id="tabs-1" >
+        <div id="tabs-1">
 
-                <div class="wrap" style="margin-top:10px; margin-left:0px;margin-bottom:10px;padding-right:0px">
-                    <div class="box1" style="margin-top:5px; margin-left:2px; margin-right:2px; padding-left:1px;">
-                        <div class='col-md-5'>
-                            <div class="form-group">
-                                <b style="margin-top:3px;margin-left:-350px;">  From:   </b>
-                                <div class='input-group date' id='datetimepicker1' style="padding-left:-100px;margin-top:5px;margin-bottom:20px;">
+            <div class="wrap" style="margin-top:10px; margin-left:0px;margin-bottom:10px;padding-right:0px">
+                <div class="box1" style="margin-top:5px; margin-left:2px; margin-right:2px; padding-left:1px;">
+                    <div class='col-md-5'>
+                        <div class="form-group">
+                            <b style="margin-top:3px;margin-left:-350px;">  From:   </b>
+                            <div class='input-group date' id='datetimepicker1' style="padding-left:-100px;margin-top:5px;margin-bottom:20px;">
 
-                                    <input type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             </div>
                         </div>
-                        <div class='col-md-5'>
-                            <div class="form-group">
-                                <b style="margin-top:3px;margin-left:-350px;"> To:   </b>
-                                <div class='input-group date' id='datetimepicker2' style="padding-left:-100px;margin-top:5px;margin-bottom:20px;">
-                                    <input type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                    </div>
+                    <div class='col-md-5'>
+                        <div class="form-group">
+                            <b style="margin-top:3px;margin-left:-350px;"> To:   </b>
+                            <div class='input-group date' id='datetimepicker2' style="padding-left:-100px;margin-top:5px;margin-bottom:20px;">
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             </div>
                         </div>
-                    </div><br /><br /><br />
-                    <button type="button" id="Shwbtn" class="btn btn-primary" style="margin-top:25px; margin-left:-900px;width:90px;margin-bottom:10px;">Show</button>
-                </div>
-
-
-
-                <div id="tabs-2">
-
-
-
-                </div>
-
-
-
+                    </div>
+                </div><br /><br /><br />
+                <button type="button" id="Shwbtn" class="btn btn-primary" style="margin-top:25px; margin-left:-900px;width:90px;margin-bottom:10px;">Show</button>
             </div>
+
         </div>
+
+            <div id="tabs-2">
+                <p>HI</p>
+            </div>
+
+
+
+        
+    </div>
 
 </div>
