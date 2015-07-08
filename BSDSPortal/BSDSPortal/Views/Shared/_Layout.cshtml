@@ -31,10 +31,10 @@
 </head>
 
 <body>
-    <div class="container" >
+    <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <img src="~/Images/schneider_logo.jpg"/>
+                <img src="~/Images/schneider_logo.jpg" />
             </div>
             <div class="col-md-10 text-center ">
                 <p class="roundedDiv"
@@ -43,7 +43,8 @@
                 </p>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row" style="height:100%;">
             @if (IsSectionDefined("Menu"))
             {
                 <div class="col-md-2 text-center">
@@ -51,30 +52,35 @@
 
                         @RenderSection("Menu", required: false);
                     </div>
-
-
-
+                </div>
+                <div class="col-md-10">
+                    @RenderBody()
                 </div>
             }
-            <div class="col-md-10" style="height:100%;width:100%;position:absolute;">
-                @RenderBody()
+            else
+            {
+                <div class="col-md-12" style="height:100%;position:absolute;">
+                    @RenderBody()
+                </div>
+            }
 
+
+
+
+
+        </div>
+
+        <footer class="footer">
+
+            <div class="col-md-10 text-center">
+                <p class="roundedDiv"
+                   style="margin:0px 50px 0px 50px;width:100%;color:white;font-family:'Arial Rounded MT';font-size:small;background-color:green;border:green medium solid">
+                    &copy; Schenider-Electric ITBU
+                </p>
             </div>
 
-        </div>
+        </footer>
     </div>
-
-    <footer class="footer">
-
-        <div class="col-md-10 text-center">
-            <p class="roundedDiv"
-               style="margin:0px 50px 0px 100px;width:1150px;color:white;font-family:'Arial Rounded MT';font-size:small;background-color:green;border:green medium solid">
-                &copy; Schenider-Electric ITBU
-            </p>
-        </div>
-
-    </footer>
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

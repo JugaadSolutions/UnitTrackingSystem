@@ -3,21 +3,6 @@
     ViewBag.Title = "Index";
 }
 
-
-@section styles{
-   
-   @*<link href="~/Content/fade.css" type="text/css" rel="stylesheet" />*@  
-    <style type="text/css">
-      html, body {
-    height:100%;
-}
-     .wrap{
-         height:100%;
-         
-     }
-    </style>
-    
-}
 @section scripts {
 
  
@@ -42,68 +27,40 @@
             $('div#pic4').delay(4000).fadeIn(1000);
         });
        
-            //$(window).load(function () {
-            //    var i = 0;
-            //   // var images = ['image2.png', 'image3.png', 'image1.png'];
-            //    var image = $('#slideit');
-            //    //Initial Background image setup
-            //    image.css('background-image', 'url(../../Images/energyEfficiency.jpg)');
-            //    //Change image at regular intervals
-            //    setInterval(function () {
-            //        image.fadeOut(1000, function () {
-            //            image.css('background-image', 'url(../../Images/energyEfficiency.jpg)');
-            //            image.fadeIn(1000);
-            //        });
-                   
-            //    }, 5000);
-            //});  //$("#image").delay(20000);
-            ////$("#image").fadeIn(14000);
-            ////$(".disp").delay(10000);
-            ////$(".disp").fadeIn(3000);
-         
+
    
 
     </script>
 }
 
-@*<div class="wrap">
-    <div class="inner">
-        <ul class="un">
-            
 
-        </ul>
-
-    </div>
-
-</div>*@
-<div class="wrap">
     <div id="pic" style="height:80%;width:16%;display:none;margin-right:4%;
-text-align:center;float:left;background-repeat: no-repeat;background-size:100% 100%;">
+text-align:center;float:left;background-repeat:no-repeat;background-size:100%;">
         <span> Dispatch </span>
 
     </div>
 
     <div id="pic1" style="height:80%;width:16%;display:none;margin-right:4%;
-text-align:center;float:left; background-repeat: no-repeat;background-size:100% 100%;">
+text-align:center;float:left;background-repeat:no-repeat;background-size:100%; ">
         <span> Receive </span>
 
     </div>
 
     <div id="pic2" style="height:80%;width:16%;display:none;margin-right:4%;
-text-align:center;float:left; background-repeat: no-repeat;background-size:100% 100%;">
+text-align:center;float:left;background-repeat:no-repeat; background-size:100%;">
         <span> Release </span>
 
     </div>
 
     <div id="pic3" style="height:80%;width:16%;display:none;margin-right:4%;
-text-align:center;float:left; background-repeat: no-repeat;background-size:100% 100%;">
+text-align:center;float:left;background-repeat:no-repeat; background-size:100%;">
         <span> Test </span>
 
     </div>
 
     <div id="pic4" style="height:80%;width:16%;display:none;margin-right:4%;
-text-align:center;float:left; background-repeat: no-repeat;background-size:100% 100%;">
+text-align:center;float:left;background-repeat:no-repeat;background-size:100%;">
         <span> Finishing </span>
 
-    </div>
+   
 </div>
