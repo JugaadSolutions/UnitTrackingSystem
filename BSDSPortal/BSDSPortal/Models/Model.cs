@@ -14,6 +14,7 @@ namespace BSDSPortal.Models
 
          [MaxLength(100)]
         [Index("NameIndex", IsUnique = true)]
+        [Display(Name = "Family Name")]
         public String Name { get; set; }
         public String Rating {get;set;}
 

@@ -13,6 +13,7 @@ namespace BSDSPortal.Models
 
          [MaxLength(100)]
         [Index("NameIndex", IsUnique = true)]
+        [Display(Name = "Shift Name")]
         public String Name { get; set; }
 
 

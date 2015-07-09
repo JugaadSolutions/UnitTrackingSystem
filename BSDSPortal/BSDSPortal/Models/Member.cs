@@ -10,6 +10,7 @@ namespace BSDSPortal.Models
     public class Member
     {
         public int MemberID { get; set; }
+      [Display(Name = "Member Name")] 
         public String Name { get; set; }
 
          [MaxLength(100)]

@@ -13,6 +13,7 @@ namespace BSDSPortal.Models
 
          [MaxLength(100)]
         [Index("NameIndex", IsUnique = true)]
+        [Display(Name = "Sector Name")]
         public String Name { get; set; }
 
         public int LocationID { get; set; }

@@ -15,6 +15,7 @@ namespace BSDSPortal.Models
 
          [MaxLength(100)]
         [Index("NameIndex", IsUnique = true)]
+        [Display(Name = "Test Name")]
         public String Name { get; set; }
 
         public TESTER_STATUS Status { get; set; }

@@ -13,6 +13,8 @@ namespace BSDSPortal.Models
 
          [MaxLength(100)]
         [Index("NameIndex", IsUnique = true)]
+
+        [Display(Name = "Product Name")]
         public String Name { get; set; }
 
         public virtual ICollection<ProductModel> ProductModels { get; set; }
