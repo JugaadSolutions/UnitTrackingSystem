@@ -585,7 +585,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
     <Content Include="Images\energyEfficiency.jpg" />
+    <Content Include="Images\Folder.jpg" />
     <Content Include="Images\green-home-icon.png" />
+    <Content Include="Images\i.png" />
     <Content Include="Images\IDF4TestLab.jpg" />
     <Content Include="Images\schneider.png" />
     <Content Include="Images\schneider_logo.jpg" />
