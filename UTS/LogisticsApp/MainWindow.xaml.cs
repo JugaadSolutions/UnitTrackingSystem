@@ -24,6 +24,7 @@ namespace LogisticsApp
         public String Location { get; set; }
         DashBoardView DashBoardView;
         LoginView LoginView;
+        string Stage = String.Empty;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +32,18 @@ namespace LogisticsApp
             DashboardGrid.Children.Add(LoginView);
             LoginView.OperatorIDTextBox.Focus();
             LoginView.LoginEvent += LoginView_LoginEvent;
+            Stage = ConfigurationManager.AppSettings["Stage"];
+
+            if (Stage == "Logistics")
+            {
+                BannerTextBlock.Text += Environment.NewLine + "LOGISTICS APP";
+
+            }
+            else if (Stage == "Finishing")
+            {
+                BannerTextBlock.Text += Environment.NewLine + "FINISHING APP";
+
+            }
 
             Location = ConfigurationManager.AppSettings["Location"];
                
@@ -40,7 +53,7 @@ namespace LogisticsApp
         {
             this.DashboardGrid.Children.Clear();
 
-            DashBoardView = new DashBoardView(Location, e.OperatorID);
+            DashBoardView = new DashBoardView(Location, e.OperatorID,Stage);
             DashBoardView.LogoutEvent += DashBoardView_LogoutEvent;
 
             this.DashboardGrid.Children.Add(DashBoardView);

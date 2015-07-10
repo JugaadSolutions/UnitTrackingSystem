@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace TesterApp
 {
+    public enum TransactionStatus
+    {
+        DISPATCHED, RECEIVED, RELEASED, TEST_STARTED, TEST_COMPLETE_ONTIME,
+        TEST_COMPLETE_DELAY, TEST_COMPLETE_EARLY, TEST_FAILURE, TEST_PAUSED, REWORK, BAYBREAKDOWN, TESTERBREAKDOWN, FINISHED
+    };
     public partial class TestTransaction
     {
         public TestTransaction(int bID, String eID, DateTime ts, String remarks, int Status)

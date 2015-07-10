@@ -70,11 +70,12 @@ namespace TesterApp.Views.Tester
                     int i = 0;
                     foreach (Bay b in Tester.Bays)
                     {
-                        RowDefinition rw = new RowDefinition();
+                        ColumnDefinition col = new ColumnDefinition();
                         bbv = new BayBaseView(b);
-                        Grid.SetRow(bbv, i++);
+                        bbv.Margin = new Thickness(5);
+                        Grid.SetColumn(bbv, i++);
 
-                        MainGrid.RowDefinitions.Add(rw);
+                        MainGrid.ColumnDefinitions.Add(col);
                         MainGrid.Children.Add(bbv);
                     }
                     break;

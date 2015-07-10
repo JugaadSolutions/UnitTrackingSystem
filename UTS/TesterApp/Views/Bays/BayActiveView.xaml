@@ -8,11 +8,13 @@
     <UserControl.Resources>
         <Style x:Key="ProgressBarStyle"  TargetType="{x:Type ProgressBar}">
             <Setter Property="Template">
+
+
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ProgressBar}">
-                        <Grid MinHeight="30" MinWidth="500">
-                            
-                            <Border Name="PART_Track" CornerRadius="2" BorderBrush="Transparent" BorderThickness="1" >
+                        <Grid x:Name="TemplateRoot" MinHeight="30" MinWidth="200">
+
+                            <Border Name="PART_Track" CornerRadius="2" BorderBrush="White" BorderThickness="1.5" >
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                         <LinearGradientBrush.GradientStops>
@@ -25,56 +27,128 @@
                             <Border 
                                     Name="PART_Indicator" 
                                     CornerRadius="2" 
-                                    Background="Gray" 
+                                    Background="White" 
                                     BorderBrush="Transparent" 
                                     BorderThickness="1" 
                                     HorizontalAlignment="Right" />
                         </Grid>
+
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+
     </UserControl.Resources>
-    <Grid Background="Green">
+    <Grid Background="Green" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
-            <Label Content="Engineer ID:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
-                   FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
-            <TextBox Name="EngineerIDTextBox" MinWidth="150" FontSize="20" HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
-            <Label Content="Model:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
-                   FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
-            <TextBox Name="ModelTextBox" MinWidth="150" FontSize="20" HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
-            <Label Content="Serial No:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
-            	FontSize="20" Foreground="White"  MinWidth="120" VerticalAlignment="Center"/>
-            <TextBox Name="SerialNoTextBox" MinWidth="150" FontSize="20" HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
-        </StackPanel>
 
-        <Grid Grid.Row="1">
-        <ProgressBar  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TestCycleProgressBar"
-                     Style="{StaticResource ResourceKey=ProgressBarStyle}"  Minimum="0" Maximum="200"/>
-            <TextBlock Name="PercentageTextBlock" HorizontalAlignment="Center" FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                <Label Content="Engineer ID:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="15" Foreground="White"  MinWidth="70" VerticalAlignment="Center"/>
+                <TextBox Name="EngineerIDTextBox" MinWidth="70" FontSize="15" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+                <Label Content="Model:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="15" Foreground="White"  MinWidth="70" VerticalAlignment="Center"/>
+                <TextBox Name="ModelTextBox" MinWidth="70" FontSize="15" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+                <Label Content="Serial No:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+            	FontSize="15" Foreground="White"  MinWidth="70" VerticalAlignment="Center"/>
+                <TextBox Name="SerialNoTextBox" MinWidth="70" FontSize="15" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+            </StackPanel>
         </Grid>
+
+
+        <GroupBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+            <GroupBox.Header>
+                <Label Content="Test Cycle Status" Foreground="White" FontSize="15" />
+            </GroupBox.Header>
+            <Grid Grid.Row="1" Margin="10,5" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Cycle Time:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="15" Foreground="White"  MinWidth="70" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="CycleTimeTextBox" MinWidth="70" FontSize="15" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" Foreground="White" Background="Green" BorderThickness="0"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Test  Start:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="15" Foreground="White"  MinWidth="70" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="StartTimeTextBox" MinWidth="70" FontSize="15" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" Foreground="White" Background="Green" BorderThickness="0"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Duration:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"
+                   FontSize="15" Foreground="White"  MinWidth="70" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Name="DurationTextBox" MinWidth="70" FontSize="15" HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" Foreground="White" Background="Green" BorderThickness="0"/>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                <ProgressBar Grid.Column="1"  VerticalAlignment="Stretch" HorizontalAlignment="Center" x:Name="TestCycleProgressBar" Orientation="Vertical"
+                     Style="{StaticResource ResourceKey=ProgressBarStyle}"  Minimum="0" Maximum="200" Width="150" Margin="10"/>
+                <TextBlock  Name="PercentageTextBlock" HorizontalAlignment="Center" FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
+                </Grid>
+            </Grid>
+
+        </GroupBox>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-        
-        <Button Name="PassButton"  Content="PASS" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" 
-                MinWidth="150" Margin="5" />
 
-            <Button Name="FailButton" Grid.Column="1" Content="FAIL" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" 
-                MinWidth="150" Margin="5" />
+            <Button Name="PassButton"  FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"  MinHeight="30" MaxHeight="40"
+                 Margin="5"  MinWidth="120">
+                <StackPanel Orientation="Horizontal">
+                <Image Source="../../Images/pass_icon.png" HorizontalAlignment="Left" Margin="5" />
+                    <TextBlock Text="PASS"  Margin="5" Foreground="Black"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="FailButton" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" MinHeight="30" MaxHeight="40"
+                MinWidth="120" Margin="5" >
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../../Images/fail_icon.png" HorizontalAlignment="Left" Margin="5" />
+                <TextBlock Text="FAIL"  Margin="5" Foreground="Black"/>
+            </StackPanel>
+            </Button>
 
         </Grid>
+
         <Popup Name="StatusDataPopup">
             <views:StatusDataView x:Name="StatusDataView" />
         </Popup>

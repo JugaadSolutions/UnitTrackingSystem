@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" Source="/Images/schneider_logo.jpg"/>
-            <TextBlock Grid.Column="1" FontSize="30" Foreground="White" Text="UNIT TRACKING SYSTEM &#xA; LOGISTICS APP" 
+            <TextBlock Name="BannerTextBlock" Grid.Column="1" FontSize="30" Foreground="White" Text="UNIT TRACKING SYSTEM " 
                                        HorizontalAlignment="Stretch"
                                    VerticalAlignment="Center" TextAlignment="Center" />
             <local:ClockDisplay Grid.Column="2" x:Name="SystemClock1" HorizontalAlignment="Right" VerticalAlignment="Center"/>

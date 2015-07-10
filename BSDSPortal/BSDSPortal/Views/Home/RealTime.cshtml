@@ -5,51 +5,54 @@
     <link href="~/Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datetimepicker.css" type="text/css" rel="stylesheet" />
-    
-<link href="~/Content/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
 
-   <link href="~/Content/tab.css" type="text/css" rel="stylesheet" />
+    <link href="~/Content/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
+
+    <link href="~/Content/tab.css" type="text/css" rel="stylesheet" />
 }
 
 
 @section scripts {
 
-    @Scripts.Render("~/bundle/jquery")
+    
 
-   
+
     <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-   <script type="text/javascript">
-         $(function () {
-
-             $('#Shwbtn').click(function () {
-                 document.location = '@Url.Action("Index","UnitStatus")';
-             })
-         })
-    </script>
-   
-    <script type="text/javascript">
-
-        $('#datetimepicker1').datetimepicker();
-        $('#datetimepicker2').datetimepicker();
-
-         </script>
     <script type="text/javascript">
         $(function () {
             $('#tabs').tabs();
         });
     </script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('#Shwbtn').click(function () {
+                document.location = '@Url.Action("Index","UnitStatus")';
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+
+    </script>
+
 }
 
 @section Menu {
-   @* <div class="rend" style="margin-left:0px;margin-top:-140px;margin-bottom:50px;float:left;">*@
-       @Html.Partial("MenuView");
-  
+    @* <div class="rend" style="margin-left:0px;margin-top:-140px;margin-bottom:50px;float:left;">*@
+    @Html.Partial("MenuView");
+
 }
 
 <div class="responsive-container" id="SummaryPanel"></div>
 <div id="ContentDiv" class="roundedDiv text-center" style="border:green medium solid;border-width:2px;margin:20px -10px 300px 0px; padding:5px 2px 5px 2px">
-    
+
 
     <div id="tabs" class="tabs-min">
         <ul>
@@ -91,13 +94,13 @@
 
         </div>
 
-            <div id="tabs-2">
-                <p>HI</p>
-            </div>
+        <div id="tabs-2">
+            <p>HI</p>
+        </div>
 
 
 
-        
+
     </div>
 
 </div>

@@ -31,7 +31,7 @@ namespace TesterApp
         {
             InitializeComponent();
             
-            testerTag = ConfigurationManager.AppSettings["TESTER_ID"];
+            testerTag = ConfigurationManager.AppSettings["Tester"];
 
 
 

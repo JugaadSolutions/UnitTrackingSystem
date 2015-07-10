@@ -40,10 +40,11 @@ namespace LogisticsApp.Views
         public enum TransactionStatus
         {
             DISPATCHED, RECEIVED, RELEASED, TEST_STARTED, TEST_COMPLETE_ONTIME,
-            TEST_COMPLETE_DELAY, TEST_COMPLETE_EARLY, TEST_FAILURE, TEST_PAUSED, REWORK, BAYBREAKDOWN, TESTERBREAKDOWN
+            TEST_COMPLETE_DELAY, TEST_COMPLETE_EARLY, TEST_FAILURE, TEST_PAUSED, REWORK, BAYBREAKDOWN, TESTERBREAKDOWN, FINISHED
         };
         private string Location;
         private string Operator;
+        private string Stage;
         UnitStatusCollection UnitStatusCollection;
 
         public event EventHandler LogoutEvent;
@@ -54,11 +55,12 @@ namespace LogisticsApp.Views
             UnitStatusCollection = new UnitStatusCollection();
         }
 
-        public DashBoardView(string Location, string p)
+        public DashBoardView(string Location, string p,string stage)
         {
             // TODO: Complete member initialization
             this.Location = Location;
             this.Operator = p;
+            this.Stage = stage;
             InitializeComponent();
             UnitStatusCollection = new UnitStatusCollection();
         }
@@ -201,6 +203,20 @@ namespace LogisticsApp.Views
                 return;
             }
 
+            if(((TransactionStatus)unit.Status == TransactionStatus.TEST_COMPLETE_DELAY 
+                ||(TransactionStatus)unit.Status == TransactionStatus.TEST_COMPLETE_EARLY
+                ||(TransactionStatus)unit.Status == TransactionStatus.TEST_COMPLETE_ONTIME)
+                && Stage == "Finishing")
+            {
+                UnitStatus s = new UnitStatus();
+                s = new UnitStatus();
+                s.Location = unit.ReleaseParams_Location;
+                s.Date_Time = unit.ReleaseParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
+                s.Operator = unit.ReleaseParams_OperatorID;
+                s.Status = "FINISHED";
+                UnitStatusCollection.Add(s);
+                return;
+            }
 
 
         }

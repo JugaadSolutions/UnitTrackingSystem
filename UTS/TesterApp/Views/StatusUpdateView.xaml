@@ -7,7 +7,7 @@
             Background="Green">
     <Grid Background="Green">
         <Button Name="StatusUpdateButton" Click="StatusUpdateButton_Click" HorizontalAlignment="Right" 
-                Height="50" Width="50" VerticalAlignment="Bottom" >
+                Height="30" Width="30" VerticalAlignment="Bottom" >
             <Grid>
                 <Image Name="FaultButtonImage" Source="../Images/Fault.png" Visibility="Collapsed" ToolTip="Break Down"/>
                 <Image Name="OKButtonImage" Source="../Images/OK.jpg" Visibility="Collapsed" ToolTip="Ready"/>

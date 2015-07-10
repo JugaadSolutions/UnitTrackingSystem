@@ -24,6 +24,7 @@ namespace BSDSPortal.Models
         public TransactionParameters DispatchParams { get; set; }
         public TransactionParameters ReceiveParams { get; set; }
         public TransactionParameters ReleaseParams { get; set; }
+        public TransactionParameters FinishParams { get; set; }
 
      
 

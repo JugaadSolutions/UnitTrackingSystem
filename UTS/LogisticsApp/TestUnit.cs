@@ -55,6 +55,17 @@ namespace LogisticsApp
 
         public int ReleaseParams_Status { get; set; }
 
+
+        [StringLength(100)]
+        public string FinishParams_OperatorID { get; set; }
+
+        public String FinishParams_Location { get; set; }
+
+        public string FinishParams_Remarks { get; set; }
+
+        public Nullable<DateTime> FinishParams_Timestamp { get; set; }
+
+        public int FinishParams_Status { get; set; }
       
 
         public virtual ProductModel ProductModel { get; set; }

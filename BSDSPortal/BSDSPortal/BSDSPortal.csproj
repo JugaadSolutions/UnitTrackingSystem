@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.Designer.cs">
       <DependentUpon>201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507100417148_finishparams.cs" />
+    <Compile Include="Migrations\201507100417148_finishparams.Designer.cs">
+      <DependentUpon>201507100417148_finishparams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bay.cs" />
     <Compile Include="Models\BayBreakdown.cs" />
@@ -797,6 +801,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.resx">
       <DependentUpon>201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507100417148_finishparams.resx">
+      <DependentUpon>201507100417148_finishparams.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

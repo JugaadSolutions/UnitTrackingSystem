@@ -35,7 +35,9 @@ namespace TesterApp.Views.Bays
             StartTimestamp = StartTs;
             CycleTime = cycletime;
 
-            double ProgressPercentage = calculatePercentage();
+            
+
+            double ProgressPercentage = calculatePercentage(DateTime.Now);
             TestCycleProgressBar.Value = 200 - ProgressPercentage;
             PercentageTextBlock.Text = Math.Round((ProgressPercentage), 2).ToString() + "%";
 
@@ -48,20 +50,24 @@ namespace TesterApp.Views.Bays
             
         }
 
-        private double calculatePercentage()
+        private double calculatePercentage(DateTime ts)
         {
-            return Math.Round(((DateTime.Now - StartTimestamp).TotalMinutes / (2* CycleTime * 60)) * 200, 2);
+            return Math.Round(((ts - StartTimestamp).TotalMinutes / (2* CycleTime)) * 200, 2);
         }
 
         void progressTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             progressTimer.Stop();
-            ProgressPercentage = calculatePercentage();
+
+            DateTime ts = DateTime.Now;
+
+            ProgressPercentage = calculatePercentage(ts);
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                              new Action(() =>
                              {
                                  this.TestCycleProgressBar.Value = 200 - ProgressPercentage;
                                  this.PercentageTextBlock.Text = ProgressPercentage.ToString() + "%";
+                                 this.DurationTextBox.Text = Math.Round((ts - StartTimestamp).TotalMinutes).ToString() + " mins";
                              }));
 
             progressTimer.Start();
