@@ -172,6 +172,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaysController.cs" />
+    <Compile Include="Controllers\BayStatusController.cs" />
     <Compile Include="Controllers\FamiliesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bay.cs" />
     <Compile Include="Models\BayBreakdown.cs" />
+    <Compile Include="Models\BayStatus.cs" />
     <Compile Include="Models\TransactionParameters.cs" />
     <Compile Include="Models\BSDSContext.cs" />
     <Compile Include="Models\Family.cs" />
@@ -780,6 +782,7 @@
     <Content Include="Views\Home\TesterGroup_1MVA.cshtml" />
     <Content Include="Views\Shared\MenuView.cshtml" />
     <Content Include="Views\UnitStatus\Index.cshtml" />
+    <Content Include="Views\BayStatus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -5,13 +5,11 @@ using System.Web;
 
 namespace BSDSPortal.Models
 {
-    public class UnitStatus
+    public class BayStatus
     {
-        public UnitStatus()
-        {
-
-        }
-      
+        public int id;
+        public string name;
+        public int value;
     }
-  
+
 }
