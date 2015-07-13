@@ -8,6 +8,7 @@ namespace BSDSPortal.Models
     public class BayStatus
     {
         public int id;
+        public int szulo;
         public string name;
         public int value;
     }
