@@ -240,7 +240,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fade3.css" />
     <Content Include="Content\fade.css" />
-    <Content Include="Content\style.min.css" />
     <Content Include="Content\tab.css" />
     <Content Include="Content\JQWidgets\images\backgroundTop.png" />
     <Content Include="Content\JQWidgets\images\backImage.png" />
@@ -715,7 +714,6 @@
     <Content Include="Scripts\JQWidgets\jqxtreemap.js" />
     <Content Include="Scripts\JQWidgets\jqxvalidator.js" />
     <Content Include="Scripts\JQWidgets\jqxwindow.js" />
-    <Content Include="Scripts\jstree.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

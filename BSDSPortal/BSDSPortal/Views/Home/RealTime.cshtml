@@ -9,7 +9,6 @@
     <link href="~/Content/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
 
     <link href="~/Content/tab.css" type="text/css" rel="stylesheet" />
-    <link href="~/Content/style.min.css" type="text/css" rel="stylesheet"/>
 }
 
 
@@ -20,7 +19,6 @@
 
     <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-    <script src="~/Scripts/jstree.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $('#tabs').tabs();
@@ -43,56 +41,40 @@
         $('#datetimepicker2').datetimepicker();
 
     </script>
-    
-   
-
+<<<<<<< HEAD
+=======
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#using_json_2').jstree({
-            'core': {
-                'data': [
-                   { "id": "ajson1", "parent": "#", "text": "Simple root node", "icon": "../../Images/Folder.jpg" },
-                   { "id": "ajson2", "parent": "#", "text": "Root node 2", "icon": "../../Images/Folder.jpg", "opened": true, "selected": true },
-                   { "id": "ajson3", "parent": "ajson2", "text": "Child 1" },
-                   { "id": "ajson4", "parent": "ajson2", "text": "Child 2" },
-                ]
-            }
-        });
-    
-    
-    
+    $(document).ready(function () {
+        var data = [{ "id": "1", "szulo": "0", "label": "Ideonics", "value": "1", "icon": "../../Images/i.png" }, { "id": "4", "szulo": "0", "label": "Products", "value": "3", "icon": "../../Images/Folder.jpg" }, { "id": "2", "szulo": "0", "label": "Solution", "value": "2", "icon": "../../Images/Folder.jpg" }];
+
+        // prepare the data
+        var source =
+        {
+            datatype: "json",
+            datafields: [
+                { name: 'id', type: 'number' },
+                { name: 'szulo', type: 'number' },
+                { name: 'label', type: 'string' },
+                { name: 'value', type: 'number' },
+                { name: 'icon', type: 'image' }
+
+            ],
+            id: 'id',
+            localdata: data
+        };
+
+        // create data adapter.
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        // perform Data Binding.
+        dataAdapter.dataBind();
+        // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
+        // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
+        // specifies the mapping between the 'text' and 'label' fields.
+        var records = dataAdapter.getRecordsHierarchy('id', 'szulo', 'items');
+        $('#jqxWidget').jqxTree({ source: records, width: '300px' });
     });
-    //$(document).ready(function () {
-    //  var data = [{ "id": "1", "szulo": "0", "label": "Ideonics", "value": "1", "icon": "../../Images/i.png" }, { "id": "4", "szulo": "0", "label": "Products", "value": "3", "icon": "../../Images/Folder.jpg" }, { "id": "2", "szulo": "0", "label": "Solution", "value": "2", "icon": "../../Images/Folder.jpg" }];
-
-    //    // prepare the data
-    //    var source =
-    //    {
-    //        datatype: "json",
-    //        datafields: [
-    //            { name: 'id', type: 'number' },
-    //            { name: 'szulo', type: 'number' },
-    //            { name: 'label', type: 'string' },
-    //            { name: 'value', type: 'number' },
-    //            { name: 'icon', type: 'image' }
-
-    //        ],
-    //        id: 'id',
-    //        localdata: data
-    //    };
-
-    //    // create data adapter.
-    //    var dataAdapter = new $.jqx.dataAdapter(source);
-    //    // perform Data Binding.
-    //    dataAdapter.dataBind();
-    //    // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
-    //    // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
-    //    // specifies the mapping between the 'text' and 'label' fields.
-    //    var records = dataAdapter.getRecordsHierarchy('id', 'szulo', 'items');
-    //    $('#jqxWidget').jqxTree({ source: records, width: '300px' });
-    //});
 </script>
-
+>>>>>>> origin/master
 
 }
 
@@ -146,30 +128,17 @@
 
         </div>
 
-        
-          <div id="tabs-2">
-            <div id="jstree_demo_div">
-                <div id="using_json_2"></div>
-                     @*<ul>
-                    <li data-jstree='{"opened":true,"selected":true}'>
-                        Root
-                        <ul>
-                            <li data-jstree='{"disabled":true}'>Child</li>
-                            <li data-jstree='{"icon":"http://jstree.com/tree.png"}'>
-                                Child
-                            </li>
-                            <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
-                                Child
-                            </li>
-                        </ul>
-                    </li>
-                </ul>*@
-                  </div>
-                @*<div id='jqxWidget'>
+<<<<<<< HEAD
+        <div id="tabs-2">
+            <p>HI</p>
+        </div>
 
-                </div>*@
+=======
+            <div id="tabs-2">
+                <div id='jqxWidget'>
+                </div>
             </div>
-
+>>>>>>> origin/master
 
 
 

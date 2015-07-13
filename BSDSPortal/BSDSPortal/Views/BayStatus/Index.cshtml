@@ -6,64 +6,26 @@
 <h2>Index</h2>
 @section scripts{
 <script type="text/javascript">
-    $(document).ready(function(){      
-        $('#tabs-2').click(function(){
-            $.ajax({
-                type: "GET",
-                //traditional: true,
-                //async: false,
-                //cache: false,
-                datatype:'json',
-                url: @Url.Action("Index","BayStatus"),
-                //context: document.body,
-                //data: getReportColumnsParams,
-                success: function (result) {
-                    $('#Id').val(result.id);
-                    $('#Name').val(result.name);
-                    $('#value').val(result.value);
-                },
-                error: function (xhr) {
-                    //debugger;  
-                    console.log(xhr.responseText);
-                    alert("Error has occurred..");
-                }
-            });
-        });
+    
+    $.ajax({
+        //type: "POST",
+        //traditional: true,
+        //async: false,
+        //cache: false,
+        url: '/BSDSPortal/BayStatusController',
+        //context: document.body,
+        //data: getReportColumnsParams,
+        success: function (result) {
+           $('#Id').val(result.id);
+           $('#Name').val(result.name);
+           $('#value').val(result.value);
+        },
+        error: function (xhr) {
+            //debugger;  
+            console.log(xhr.responseText);
+            alert("Error has occurred..");
+        }
     });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-        var source =
-      {
-          datatype: 'result',
-          datafields: [
-              { name: 'id', type: 'number' },
-              { name: 'szulo', type: 'number' },
-              { name: 'name', type: 'string' },
-              { name: 'value', type: 'number' }
-              
-
-          ],
-          id: 'id',
-          localdata: data
-      };
-
-        // create data adapter.
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        // perform Data Binding.
-        dataAdapter.dataBind();
-        // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
-        // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
-        // specifies the mapping between the 'text' and 'label' fields.
-       // var records = dataAdapter.getRecordsHierarchy('id', 'szulo', 'value');
-        $('#jqxWidget').jqxTree({ source: result, width: '300px' });
-        });
-        
     </script>
 }
 
-<div class="container">
-    <div id='jqxWidget'>
-    </div>
-</div>
