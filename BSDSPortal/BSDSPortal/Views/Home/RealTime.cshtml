@@ -43,18 +43,45 @@
         $('#datetimepicker2').datetimepicker();
 
     </script>
+    <script type="text/javascript">
+       
+          
+     
+    </script>
 
 <script type="text/javascript">
-    $('#using_json_2').jstree({
-        'core': {
-            'data': [
-               { "id": "ajson1", "parent": "#", "text": "Simple root node","icon": "../../Images/Folder.jpg"  },
-               { "id": "ajson2", "parent": "#", "text": "Root node 2", "icon": "../../Images/Folder.jpg", "opened": true, "selected": true },
-               { "id": "ajson3", "parent": "ajson2", "text": "Child 1", "opened": true, "selected": true },
-               { "id": "ajson4", "parent": "ajson2", "text": "Child 2", "opened": true, "selected": true },
-            ]
-        }
+    //$('#using_json_2').jstree({
+    //    'core': {
+    //        'data': [
+    //           { "id": "ajson1", "parent": "#", "text": "Simple root node","icon": "../../Images/Folder.jpg"  },
+    //           { "id": "ajson2", "parent": "#", "text": "Root node 2", "icon": "../../Images/Folder.jpg", "opened": true, "selected": true },
+    //           { "id": "ajson3", "parent": "ajson2", "text": "Child 1", "opened": true, "selected": true },
+    //           { "id": "ajson4", "parent": "ajson2", "text": "Child 2", "opened": true, "selected": true },
+    //        ]
+    //    }
+         
+    //});
+    $(function () {
+        $('#container').jstree({
+            'core': {
+                'data': [
+                    {
+                        "text": "Root node",
+                        "state": { "opened": false },
+                        "children": [
+                            {
+                                "text": "Child node 1",
+                                "state": { "selected": true },
+                                "icon": "glyphicon glyphicon-flash"
+                            },
+                            { "text": "Child node 2", "state": { "disabled": true } }
+                        ]
+                    }
+                ]
+            }
+        });
     });
+  
     //$(document).ready(function () {
     //    var data = [{ "id": "1", "szulo": "0", "label": "Ideonics", "value": "1", "icon": "../../Images/i.png" }, { "id": "4", "szulo": "0", "label": "Products", "value": "3", "icon": "../../Images/Folder.jpg" }, { "id": "2", "szulo": "0", "label": "Solution", "value": "2", "icon": "../../Images/Folder.jpg" }];
 
@@ -142,9 +169,8 @@
 
 
             <div id="tabs-2">
-                <div id="using_json_2"></div>
-                     @*<div id='jqxWidget'>
-                </div>*@
+                <div id="container"></div>
+                
             </div>
 
 
