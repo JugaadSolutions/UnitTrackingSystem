@@ -21,6 +21,7 @@
     <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Scripts/jstree.js"></script>
+    <script src="~/Styles/jquery.hotkeys-0.7.9.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $('#tabs').tabs();
@@ -50,67 +51,52 @@
     </script>
 
 <script type="text/javascript">
-    //$('#using_json_2').jstree({
-    //    'core': {
-    //        'data': [
-    //           { "id": "ajson1", "parent": "#", "text": "Simple root node","icon": "../../Images/Folder.jpg"  },
-    //           { "id": "ajson2", "parent": "#", "text": "Root node 2", "icon": "../../Images/Folder.jpg", "opened": true, "selected": true },
-    //           { "id": "ajson3", "parent": "ajson2", "text": "Child 1", "opened": true, "selected": true },
-    //           { "id": "ajson4", "parent": "ajson2", "text": "Child 2", "opened": true, "selected": true },
-    //        ]
-    //    }
-         
-    //});
-    $(function () {
-        $('#container').jstree({
-            'core': {
-                'data': [
-                    {
-                        "text": "Root node",
-                        "state": { "opened": false },
-                        "children": [
-                            {
-                                "text": "Child node 1",
-                                "state": { "selected": true },
-                                "icon": "glyphicon glyphicon-flash"
-                            },
-                            { "text": "Child node 2", "state": { "disabled": true } }
-                        ]
-                    }
-                ]
-            }
-        });
+    $(document).ready(function () {
+        // Create jqxExpander
+        $('#jqxExpander').jqxExpander({ showArrow: false, toggleMode: 'none', width: '300px', height: '370px' });
+        // Create jqxTree
+        var source = [
+        {
+            icon: "../../Images/i.png", label: "Idenics", expanded: false, items: [
+              {
+                  icon: "../../Images/Folder.jpg", label: "Calendar", expanded: true, items: [
+                       { icon: "../../Images/Folder.jpg", label: "Year" },
+             { icon: "../../Images/Folder.jpg", label: "Date" },
+                  ]
+              },
+              {
+                  icon: "../../Images/Folder.jpg", label: "Contacts", selected: true, expanded: false, items: [
+                         { icon: "../../Images/Folder.jpg", label: "My Contact" },
+               { icon: "../../Images/Folder.jpg", label: "Favourite" },
+                  ]
+              },
+              {
+                  icon: "../../Images/Folder.jpg", label: "Admin", expanded: false, items: [
+                         { icon: "../../Images/Folder.jpg", label: "Saagar" },
+               { icon: "../../Images/Folder.jpg", label: "SM" },
+                  ]
+              },
+             {
+                 icon: "../../Images/Folder.jpg", label: "Fruite", expanded: false, items: [
+                         { icon: "../../Images/Folder.jpg", label: "Mango" },
+               { icon: "../../Images/Folder.jpg", label: "Apple" },
+                 ]
+             },
+             {
+                 icon: "../../Images/Folder.jpg", label: "Solution",expanded: false, items: [
+                         { icon: "../../Images/Folder.jpg", label: "Software" },
+               { icon: "../../Images/Folder.jpg", label: "Electronics" },
+               ]
+             },
+            
+            ]
+        },
+      
+       
+        ];
+        $('#jqxTree').jqxTree({ source: source, width: '100%', height: '100%' });
+        $('#jqxTree').jqxTree('selectItem', null);
     });
-  
-    //$(document).ready(function () {
-    //    var data = [{ "id": "1", "szulo": "0", "label": "Ideonics", "value": "1", "icon": "../../Images/i.png" }, { "id": "4", "szulo": "0", "label": "Products", "value": "3", "icon": "../../Images/Folder.jpg" }, { "id": "2", "szulo": "0", "label": "Solution", "value": "2", "icon": "../../Images/Folder.jpg" }];
-
-    //    // prepare the data
-    //    var source =
-    //    {
-    //        datatype: "json",
-    //        datafields: [
-    //            { name: 'id', type: 'number' },
-    //            { name: 'szulo', type: 'number' },
-    //            { name: 'label', type: 'string' },
-    //            { name: 'value', type: 'number' },
-    //            { name: 'icon', type: 'image' }
-
-    //        ],
-    //        id: 'id',
-    //        localdata: data
-    //    };
-
-    //    // create data adapter.
-    //    var dataAdapter = new $.jqx.dataAdapter(source);
-    //    // perform Data Binding.
-    //    dataAdapter.dataBind();
-    //    // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
-    //    // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
-    //    // specifies the mapping between the 'text' and 'label' fields.
-    //    var records = dataAdapter.getRecordsHierarchy('id', 'szulo', 'items');
-    //    $('#jqxWidget').jqxTree({ source: records, width: '300px' });
-    //});
 </script>
 
 
@@ -169,8 +155,17 @@
 
 
             <div id="tabs-2">
-                <div id="container"></div>
-                
+                <div id='jqxWidget'>
+                    <div id='jqxExpander'>
+                        <div>
+                           Tree
+                        </div>
+                        <div style="overflow: hidden;">
+                            <div style="border: none;" id='jqxTree'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
