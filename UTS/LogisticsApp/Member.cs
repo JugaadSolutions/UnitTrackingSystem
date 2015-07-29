@@ -20,7 +20,7 @@ namespace LogisticsApp
         public string Name { get; set; }
 
         [StringLength(100)]
-        public string SesaID { get; set; }
+        public string OperatorID { get; set; }
 
         public string Email { get; set; }
 

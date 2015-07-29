@@ -53,10 +53,20 @@
             <GroupBox.Header>
                 <Label Content="Unit Status" FontSize="18" Foreground="White"/>
             </GroupBox.Header>
-        <tk:DataGrid  Name="UnitStatusGrid" AutoGenerateColumns="True" CanUserAddRows="False"
+            <tk:DataGrid  Name="UnitStatusGrid" AutoGenerateColumns="False" CanUserAddRows="False"
                      CanUserDeleteRows="False" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" 
                      MinHeight="100" Margin="5" Background="Green" Foreground="Black" FontSize="15" ItemsSource="{Binding}" HorizontalAlignment="Center" MinWidth="400"
-                      BorderThickness="1" BorderBrush="White"/>
+                      BorderThickness="1" BorderBrush="White">
+                <tk:DataGrid.Columns>
+                    <tk:DataGridTextColumn IsReadOnly="True" Header="Location" Binding="{Binding Location}" />
+                    <tk:DataGridTextColumn IsReadOnly="True" Header="Timestamp" Binding="{Binding Timestamp}" />
+                    <tk:DataGridTextColumn IsReadOnly="True" Header="Status" Binding="{Binding Status}" />
+                    <tk:DataGridTextColumn IsReadOnly="True" Header="Operator" Binding="{Binding OperatorID}" />
+
+                </tk:DataGrid.Columns>
+
+
+            </tk:DataGrid>
         </GroupBox>
     </Grid>
 </UserControl>

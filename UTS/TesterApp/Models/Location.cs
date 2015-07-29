@@ -1,24 +1,23 @@
-
+namespace TesterApp.Models
+{
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-namespace LogisticsApp
-{
-    public partial class Shift
+    public partial class Location
     {
-        public Shift()
+        public Location()
         {
-            Members = new HashSet<Member>();
+            Sectors = new HashSet<Sector>();
         }
 
-        public int ShiftID { get; set; }
+        public int LocationID { get; set; }
 
         [StringLength(100)]
         public string Name { get; set; }
 
-        public virtual ICollection<Member> Members { get; set; }
+        public virtual ICollection<Sector> Sectors { get; set; }
     }
 }

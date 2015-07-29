@@ -1,4 +1,4 @@
-namespace TesterApp
+namespace TesterApp.Models
 {
     using System;
     using System.Data.Entity;

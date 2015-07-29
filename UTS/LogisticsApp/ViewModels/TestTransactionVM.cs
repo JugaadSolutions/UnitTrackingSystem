@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TesterApp.Models
+namespace LogisticsApp
 {
   
     public partial class TestTransaction

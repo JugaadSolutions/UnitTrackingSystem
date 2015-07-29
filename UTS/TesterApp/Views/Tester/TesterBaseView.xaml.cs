@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using TesterApp;
 using TesterApp.Views.Bays;
+using TesterApp.Models;
 
 namespace TesterApp.Views.Tester
 {
@@ -25,7 +26,7 @@ namespace TesterApp.Views.Tester
     {
         public enum TesterStatus { ACTIVE =0 , BREAKDOWN = 1}
         public enum TesterBreakdownStatus { OPEN = 1, CLOSED = 0 }
-        TesterApp.Tester Tester;
+        TesterApp.Models.Tester Tester;
 
         StatusUpdateView sv;
 

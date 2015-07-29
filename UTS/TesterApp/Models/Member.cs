@@ -1,4 +1,4 @@
-namespace TesterApp
+namespace TesterApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace TesterApp
         public string Name { get; set; }
 
         [StringLength(100)]
-        public string SesaID { get; set; }
+        public string OperatorID { get; set; }
 
         public string Email { get; set; }
 

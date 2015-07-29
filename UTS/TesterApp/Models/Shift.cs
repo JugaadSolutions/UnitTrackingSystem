@@ -1,4 +1,4 @@
-namespace TesterApp
+namespace TesterApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,18 @@ namespace TesterApp
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Location
+    public partial class Shift
     {
-        public Location()
+        public Shift()
         {
-            Sectors = new HashSet<Sector>();
+            Members = new HashSet<Member>();
         }
 
-        public int LocationID { get; set; }
+        public int ShiftID { get; set; }
 
         [StringLength(100)]
         public string Name { get; set; }
 
-        public virtual ICollection<Sector> Sectors { get; set; }
+        public virtual ICollection<Member> Members { get; set; }
     }
 }

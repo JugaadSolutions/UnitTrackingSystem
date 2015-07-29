@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using TesterApp;
 using TesterApp.Views;
+using TesterApp.Models;
 namespace TesterApp.Views.Bays
 {
     /// <summary>
@@ -24,7 +25,7 @@ namespace TesterApp.Views.Bays
     public partial class BayBaseView : UserControl
     {
         int BayID;
-        Bay Bay;
+        TesterApp.Models.Bay Bay;
         BayReadyView brv;
         BayActiveView bav;
 
@@ -61,6 +62,7 @@ namespace TesterApp.Views.Bays
 
                         brv = new BayReadyView();
                         brv.StartButton.Click += StartButton_Click;
+                        brv.RepairButton.Click += RepairButton_Click;
                         MainGrid.Children.Clear();
                         MainGrid.Children.Add(brv);
 
@@ -76,7 +78,7 @@ namespace TesterApp.Views.Bays
                         {
                             Bay = db.Bays.Include("TestTransactions").SingleOrDefault(b => b.BayID == BayID);
 
-                            transaction = Bay.TestTransactions.Last(b => b.TransactionParameters_Status == (int)TransactionStatus.TEST_STARTED);
+                            transaction = Bay.TestTransactions.Last(b => b.Status == TransactionStatus.TEST_STARTED);
                             cycle = transaction.TestCycle;
                             tu = cycle.TestUnit;
 
@@ -87,7 +89,7 @@ namespace TesterApp.Views.Bays
                             bav = new BayActiveView(transaction.TestCycle.StartTimestamp,
                                 transaction.TestCycle.TestUnit.ProductModel.CycleTime.Value);
 
-                            bav.EngineerIDTextBox.Text = transaction.TransactionParameters_OperatorID;
+                            bav.EngineerIDTextBox.Text = transaction.OperatorID;
                             bav.SerialNoTextBox.Text = tu.SerialNo;
                             bav.ModelTextBox.Text = tu.ProductModel.Name;
 
@@ -131,33 +133,75 @@ namespace TesterApp.Views.Bays
             }
             catch (Exception exp)
             {
+                MessageBox.Show("Error In Application.Please Retry\n IF error remains Contact Application Manager \n"
+                    + exp.Message + Environment.NewLine + exp.InnerException.Message + Environment.NewLine,
+                    "Tester App - Error",
+                       MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
 
         }
 
-
-
-
-        void updateTestCycle(int cycleStatus, int transactionStatus)
+        void RepairButton_Click(object sender, RoutedEventArgs e)
         {
+            using (EntityModel db = new EntityModel())
+            {
+                tu = db.TestUnits
+                       .Include("TestCycles")
+                       .Include("TestCycles.TestTransactions")
+                       .SingleOrDefault((t => (t.SerialNo == brv.SerialNoTextBox.Text)));
+
+                if( tu.Status != TransactionStatus.TEST_FAILURE)
+                {
+                    MessageBox.Show("Unit Status does not allow for this action. Please verify", "Application Message"
+                        , MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+            }
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
+                         new Action(() =>
+                         {
+                             brv.HeaderLabel.Content = "Repair Info";
+                             brv.StatusDataUpdateButton.Click += RepairDataUpdateButton;
+                             brv.StatusCancelButton.Click += BAV_StatusCancelButton_Click;
+                             double primScreenHeight = System.Windows.SystemParameters.FullPrimaryScreenHeight;
+                             double primScreenWidth = System.Windows.SystemParameters.FullPrimaryScreenWidth;
+
+                             brv.RepairPopup.IsOpen = true;
+                         }));
+        }
+
+        private void RepairDataUpdateButton(object sender, RoutedEventArgs e)
+        {
+            TransactionStatus transactionStatus = TransactionStatus.REWORK;
+
             using (EntityModel db = new EntityModel())
             {
                 DateTime ts = DateTime.Now;
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
                 tu = db.TestUnits.Include("TestCycles").Include("TestCycles.TestTransactions")
                     .SingleOrDefault(t => t.TestUnitID == tu.TestUnitID);
-                cycle = tu.TestCycles.First(c => c.TestCycleID == cycle.TestCycleID);
 
 
-                transaction = new TestTransaction(Bay.BayID,
-                    bav.EngineerIDTextBox.Text, ts, sv.StatusDataView.RemarksTextBox.Text, transactionStatus, cycle.TestCycleID);
-                cycle.TestTransactions.Add(transaction);
-                cycle.Status = cycleStatus;
-                cycle.EndTimestamp = ts;
-                Bay.Status = 0; //Ready
+                tu.Status = transactionStatus;
+                Bay.Status = 0;
                 db.SaveChanges();
+
+
             }
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
+                           new Action(() =>
+                           {
+                               createBayView();
+                           }));
+
+            brv.RepairPopup.IsOpen = false;
         }
+
+
+
+
+
 
         void FailButton_Click(object sender, RoutedEventArgs e)
         {
@@ -205,36 +249,74 @@ namespace TesterApp.Views.Bays
 
         private void FailureDataUpdateButton(object sender, RoutedEventArgs e)
         {
-            bav.StatusDataPopup.IsOpen = false;
-            updateTestCycle(4, 2); //Failure
+            TransactionStatus transactionStatus = TransactionStatus.TEST_FAILURE;
+
+            using (EntityModel db = new EntityModel())
+            {
+                DateTime ts = DateTime.Now;
+                Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
+                tu = db.TestUnits.Include("TestCycles").Include("TestCycles.TestTransactions")
+                    .SingleOrDefault(t => t.TestUnitID == tu.TestUnitID);
+
+                tu.UpdateTestCycle(Bay.BayID, bav.EngineerIDTextBox.Text, sv.StatusDataView.RemarksTextBox.Text, DateTime.Now
+                    , cycle.TestCycleID, transactionStatus);
+                tu.Status = transactionStatus;
+                Bay.Status = 0;
+                db.SaveChanges();
+
+
+            }
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                            new Action(() =>
                            {
                                createBayView();
                            }));
+
+            bav.StatusDataPopup.IsOpen = false;
 
 
         }
 
         private void PassDataUpdateButton(object sender, RoutedEventArgs e)
         {
-            bav.StatusDataPopup.IsOpen = false;
-            int cycleStatus = (int)TransactionStatus.TEST_COMPLETE_ONTIME;
+
+            TransactionStatus transactionStatus = TransactionStatus.TEST_COMPLETE_ONTIME;
             if (bav.ProgressPercentage > 100)
-                cycleStatus = (int)TransactionStatus.TEST_COMPLETE_DELAY;
+                transactionStatus = TransactionStatus.TEST_COMPLETE_DELAY;
             else if (bav.ProgressPercentage < 100)
-                cycleStatus = (int)TransactionStatus.TEST_COMPLETE_EARLY;
-            updateTestCycle(cycleStatus, cycleStatus);
+                transactionStatus = TransactionStatus.TEST_COMPLETE_EARLY;
+
+            using (EntityModel db = new EntityModel())
+            {
+                DateTime ts = DateTime.Now;
+                Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
+                tu = db.TestUnits.Include("TestCycles").Include("TestCycles.TestTransactions")
+                    .SingleOrDefault(t => t.TestUnitID == tu.TestUnitID);
+
+                tu.UpdateTestCycle(Bay.BayID, bav.EngineerIDTextBox.Text, sv.StatusDataView.RemarksTextBox.Text, DateTime.Now
+                    , cycle.TestCycleID, transactionStatus);
+                tu.Status = transactionStatus;
+                Bay.Status = 0;
+                db.SaveChanges();
+
+
+            }
+
+
+
+
+
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                            new Action(() =>
                            {
+
                                createBayView();
                            }));
+            bav.StatusDataPopup.IsOpen = false;
         }
 
 
-        #region START_EVENT
-        void StartButton_Click(object sender, RoutedEventArgs e)
+        private void validateInput()
         {
             if (brv.EngineerIDTextBox.Text == String.Empty || brv.ModelTextBox.Text == String.Empty
                             || brv.SerialNoTextBox.Text == String.Empty)
@@ -244,11 +326,27 @@ namespace TesterApp.Views.Bays
                 return;
             }
 
+
+
+        }
+
+        #region START_EVENT
+        void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            validateInput();
+
             using (EntityModel db = new EntityModel())
             {
                 try
                 {
                     p = db.ProductModels.SingleOrDefault(m => m.Name == brv.ModelTextBox.Text);
+
+                    if (p == null)
+                    {
+                        MessageBox.Show("Model Not Found. Please Verify", "Application Message", MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        return;
+                    }
                     tu = db.TestUnits
                         .Include("TestCycles")
                         .Include("TestCycles.TestTransactions")
@@ -259,45 +357,39 @@ namespace TesterApp.Views.Bays
                         MessageBox.Show("Unit Not Found", "Application Info", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         return;
                     }
-                    if(tu.Status== (int)TransactionStatus.RELEASED)
+                    if (tu.Status == TransactionStatus.RELEASED || tu.Status == TransactionStatus.TEST_FAILURE)
                     {
-                         Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
+                        Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
 
                         Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);
 
                         DateTime ts = DateTime.Now;
 
-                        TestTransaction tt = new TestTransaction(BayID,brv.EngineerIDTextBox.Text,ts,"",(int)TransactionStatus.TEST_STARTED);
+                        TestTransaction tt = new TestTransaction(BayID, brv.EngineerIDTextBox.Text, ts, "", TransactionStatus.TEST_STARTED);
 
-                        TestCycle tc = new TestCycle(ts,(int)TransactionStatus.TEST_STARTED);
+                        TestCycle tc = new TestCycle(tu.TestUnitID, ts, (int)TransactionStatus.TEST_STARTED);
+
                         tc.TestTransactions.Add(tt);
+                        Bay.TestTransactions.Add(tt);
 
-                        tu = new TestUnit(p.ProductModelID,(int)TransactionStatus.TEST_STARTED,brv.SerialNoTextBox.Text);
-
+                        tu.ProductModelID = p.ProductModelID;
                         tu.TestCycles.Add(tc);
+                        tu.Status = TransactionStatus.TEST_STARTED;
 
-                        
 
-                       
 
                         Bay.Status = 2;//Bay is active
+
                         db.SaveChanges();
-                        this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
+
+                    }
+
+                    this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                         new Action(() =>
                         {
+
                             createBayView();
                         }));
-                    }
-
-                    else
-                    {
-                        brv.RestartResumeView.HeaderLabel.Content = "Test Cycle Info";
-                        brv.RestartResumeView.RestartButton.Click += RestartButton_Click;
-                        brv.RestartResumeView.ResumeButton.Click += ResumeButton_Click;
-                        brv.RestartResumeView.CancelButton.Click += CancelButton_Click;
-                        brv.RestartResumePopup.IsOpen = true;
-                    }
-
 
                 }
                 catch (Exception exp)
@@ -403,8 +495,8 @@ namespace TesterApp.Views.Bays
                         int testcycleId = cycle.TestCycleID;
                         Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);
                         cycle = db.TestCycles.Include("TestTransactions").Where(c => c.TestCycleID == testcycleId).Single();
-                        transaction = new TestTransaction(BayID, sv.StatusDataView.EngineerIDTextBox.Text,
-                            DateTime.Now, sv.StatusDataView.RemarksTextBox.Text, 3, testcycleId);
+                        //transaction = new TestTransaction(BayID, sv.StatusDataView.EngineerIDTextBox.Text,
+                        //    DateTime.Now, sv.StatusDataView.RemarksTextBox.Text, 3, testcycleId);
                         cycle.TestTransactions.Add(transaction);
 
 
@@ -441,8 +533,8 @@ namespace TesterApp.Views.Bays
                     int testcycleId = cycle.TestCycleID;
                     Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);
                     cycle = db.TestCycles.Include("TestTransactions").Where(c => c.TestCycleID == testcycleId).Single();
-                    transaction = new TestTransaction(BayID, sv.StatusDataView.EngineerIDTextBox.Text,
-                        DateTime.Now, sv.StatusDataView.RemarksTextBox.Text, 4, testcycleId);
+                    //transaction = new TestTransaction(BayID, sv.StatusDataView.EngineerIDTextBox.Text,
+                    //    DateTime.Now, sv.StatusDataView.RemarksTextBox.Text, 4, testcycleId);
                     cycle.TestTransactions.Add(transaction);
                     Bay.Status = 0;
                     db.SaveChanges();

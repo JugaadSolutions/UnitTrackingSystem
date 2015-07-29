@@ -32,20 +32,46 @@ namespace LogisticsApp
             DashboardGrid.Children.Add(LoginView);
             LoginView.OperatorIDTextBox.Focus();
             LoginView.LoginEvent += LoginView_LoginEvent;
+
+            Location = ConfigurationManager.AppSettings["Location"];
+
+            using( EntityModel db = new EntityModel())
+            {
+                try
+                {
+                    var location = db.Locations.Single(l => l.Name == Location);
+                    if( location == null)
+                    {
+                        MessageBox.Show("Location Not Found.\nPlease Contact Administrator", "Application Message"
+                            , MessageBoxButton.OK, MessageBoxImage.Error);
+                        Application.Current.Shutdown();
+                    }
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show("Application Error\n" + e.Message
+                        
+                        , "Application Message"
+                           , MessageBoxButton.OK, MessageBoxImage.Error);
+                    Application.Current.Shutdown();
+                }
+            }
+
+
             Stage = ConfigurationManager.AppSettings["Stage"];
 
             if (Stage == "Logistics")
             {
-                BannerTextBlock.Text += Environment.NewLine + "LOGISTICS APP";
+                BannerTextBlock.Text += Environment.NewLine + Location +  " - LOGISTICS APP";
 
             }
             else if (Stage == "Finishing")
             {
-                BannerTextBlock.Text += Environment.NewLine + "FINISHING APP";
+                BannerTextBlock.Text += Environment.NewLine + Location + " - FINISHING APP";
 
             }
 
-            Location = ConfigurationManager.AppSettings["Location"];
+           
                
         }
 

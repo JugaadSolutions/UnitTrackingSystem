@@ -26,7 +26,13 @@ namespace TesterApp.Views.Bays
         public BayReadyView()
         {
             InitializeComponent();
+
+            EngineerIDTextBox.Clear();
+            SerialNoTextBox.Clear();
+            ModelTextBox.Clear();
         }
+
+  
 
       
     }

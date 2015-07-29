@@ -8,7 +8,7 @@ namespace LogisticsApp
     public partial class EntityModel : DbContext
     {
         public EntityModel()
-            : base("name=DBConnectionString")
+            : base("name=UTS_V1")
         {
         }
 
@@ -16,6 +16,7 @@ namespace LogisticsApp
         public virtual DbSet<Bay> Bays { get; set; }
         public virtual DbSet<Family> Families { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<LogisticTransaction> LogisticTransactions { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<ProductModel> ProductModels { get; set; }
         public virtual DbSet<Sector> Sectors { get; set; }

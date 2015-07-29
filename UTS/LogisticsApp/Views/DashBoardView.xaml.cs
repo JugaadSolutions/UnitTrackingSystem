@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LogisticsApp;
 
 namespace LogisticsApp.Views
 {
@@ -22,37 +23,22 @@ namespace LogisticsApp.Views
     /// 
 
 
-    class UnitStatus
-    {
-        
-        public String Status { get; set; }
-        public String Location { get; set; }
-        public String Date_Time { get; set; }
-        public String Operator { get; set; }
-    }
-
-    class UnitStatusCollection : ObservableCollection<UnitStatus>
-    {
-
-    }
+   
     public partial class DashBoardView : UserControl
     {
-        public enum TransactionStatus
-        {
-            DISPATCHED, RECEIVED, RELEASED, TEST_STARTED, TEST_COMPLETE_ONTIME,
-            TEST_COMPLETE_DELAY, TEST_COMPLETE_EARLY, TEST_FAILURE, TEST_PAUSED, REWORK, BAYBREAKDOWN, TESTERBREAKDOWN, FINISHED
-        };
+        
         private string Location;
         private string Operator;
         private string Stage;
-        UnitStatusCollection UnitStatusCollection;
+
+        TransactionCollection TransactionCollection;
 
         public event EventHandler LogoutEvent;
 
         public DashBoardView()
         {
             InitializeComponent();
-            UnitStatusCollection = new UnitStatusCollection();
+            TransactionCollection = new TransactionCollection();
         }
 
         public DashBoardView(string Location, string p,string stage)
@@ -62,7 +48,7 @@ namespace LogisticsApp.Views
             this.Operator = p;
             this.Stage = stage;
             InitializeComponent();
-            UnitStatusCollection = new UnitStatusCollection();
+            TransactionCollection = new TransactionCollection();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -74,10 +60,16 @@ namespace LogisticsApp.Views
                 {
                     unit = new TestUnit();
                     unit.SerialNo = SerialNoTextBox.Text;
-                    unit.DispatchParams_Location = Location;
-                    unit.DispatchParams_OperatorID = Operator;
+                    LogisticTransaction lt = new LogisticTransaction();
+
+                    lt.Location= Location;
+                    lt.OperatorID= Operator;
+                    lt.Timestamp = DateTime.Now;
+                    lt.Status = TransactionStatus.DISPATCHED;
                     unit.Status = (int)TransactionStatus.DISPATCHED;
-                    unit.DispatchParams_Timestamp = DateTime.Now;
+
+                    unit.LogisticTransactions.Add(lt);
+                    
                     db.TestUnits.Add(unit);
                     db.SaveChanges();
 
@@ -87,7 +79,9 @@ namespace LogisticsApp.Views
                 {
                     if ((TransactionStatus)unit.Status == TransactionStatus.RELEASED)
                     {
-                        MessageBox.Show("Unit Released for Testing", "UTS Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Unit Released for Testing", "UTS Message",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
 
                     }
                     else
@@ -135,104 +129,57 @@ namespace LogisticsApp.Views
                 {
                     updateUnitStatusDisplay(unit);
                     UnitStatusGrid.DataContext = null;
-                    UnitStatusGrid.DataContext = UnitStatusCollection;
+                    UnitStatusGrid.DataContext = TransactionCollection;
                 }
             }
         }
 
         private void updateUnitStatusDisplay(TestUnit unit)
         {
-            UnitStatusCollection.Clear();
+            TransactionCollection.Clear();
 
-            if ((TransactionStatus)unit.Status == TransactionStatus.DISPATCHED)
+            foreach( Transaction t in unit.LogisticTransactions)
             {
-
-                UnitStatus s = new UnitStatus();
-
-                s.Location = unit.DispatchParams_Location;
-                s.Date_Time = unit.DispatchParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.DispatchParams_OperatorID;
-                s.Status = "DISPATCHED";
-                UnitStatusCollection.Add(s);
-                return;
+                TransactionCollection.Add(t);
             }
 
-            if ((TransactionStatus)unit.Status == TransactionStatus.RECEIVED)
-            {
-
-                UnitStatus s = new UnitStatus();
-                s.Location = unit.DispatchParams_Location;
-                s.Date_Time = unit.DispatchParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.DispatchParams_OperatorID;
-                s.Status = "DISPATCHED";
-                UnitStatusCollection.Add(s);
-
-                s = new UnitStatus();
-                s.Location = unit.ReceiveParams_Location;
-                s.Date_Time = unit.ReceiveParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.ReceiveParams_OperatorID;
-                s.Status = "RECEIVED";
-                UnitStatusCollection.Add(s);
-                return;
-            }
-
-            if ((TransactionStatus)unit.Status == TransactionStatus.RELEASED)
-            {
-
-                UnitStatus s = new UnitStatus();
-                s.Location = unit.DispatchParams_Location;
-                s.Date_Time = unit.DispatchParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.DispatchParams_OperatorID;
-                s.Status = "DISPATCHED";
-                UnitStatusCollection.Add(s);
-
-                s = new UnitStatus();
-                s.Location = unit.ReceiveParams_Location;
-                s.Date_Time = unit.ReceiveParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.ReceiveParams_OperatorID;
-                s.Status = "RECEIVED";
-                UnitStatusCollection.Add(s);
-
-
-                s = new UnitStatus();
-                s.Location = unit.ReleaseParams_Location;
-                s.Date_Time = unit.ReleaseParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.ReleaseParams_OperatorID;
-                s.Status = "RELEASED";
-                UnitStatusCollection.Add(s);
-                return;
-            }
-
-            if(((TransactionStatus)unit.Status == TransactionStatus.TEST_COMPLETE_DELAY 
-                ||(TransactionStatus)unit.Status == TransactionStatus.TEST_COMPLETE_EARLY
-                ||(TransactionStatus)unit.Status == TransactionStatus.TEST_COMPLETE_ONTIME)
-                && Stage == "Finishing")
-            {
-                UnitStatus s = new UnitStatus();
-                s = new UnitStatus();
-                s.Location = unit.ReleaseParams_Location;
-                s.Date_Time = unit.ReleaseParams_Timestamp.Value.ToString("dd-MM-yyyy HH:mm:ss");
-                s.Operator = unit.ReleaseParams_OperatorID;
-                s.Status = "FINISHED";
-                UnitStatusCollection.Add(s);
-                return;
-            }
+         
 
 
         }
 
         private void updateUnitStatus(TestUnit unit)
         {
-            
-               
+             LogisticTransaction t = new LogisticTransaction();
+
+              t.Location = Location;
+             t.OperatorID = Operator;
+             t.Timestamp = DateTime.Now;
+
+            if ((TransactionStatus)unit.Status == TransactionStatus.REWORK)
+            {
+
+                unit.Status = (int)TransactionStatus.DISPATCHED;
+
+                
+
+
+              
+                t.Status = TransactionStatus.DISPATCHED;
+                unit.LogisticTransactions.Add(t);
+                
+                return;
+
+            }
 
                 if ((TransactionStatus)unit.Status == TransactionStatus.DISPATCHED)
                 {
 
-                    unit.Status = (int)TransactionStatus.RECEIVED;
-                    unit.ReceiveParams_Location = Location;
-                    unit.ReceiveParams_OperatorID = Operator;
-                    unit.ReceiveParams_Timestamp = DateTime.Now;
+                    unit.Status = TransactionStatus.RECEIVED;
+
+                   
+                    t.Status = TransactionStatus.RECEIVED;
+                    unit.LogisticTransactions.Add(t);
                     return;
 
                 }
@@ -240,13 +187,14 @@ namespace LogisticsApp.Views
                 if ((TransactionStatus)unit.Status == TransactionStatus.RECEIVED)
                 {
 
-                    unit.Status = (int)TransactionStatus.RELEASED;
-                    unit.ReleaseParams_Location = Location;
-                    unit.ReleaseParams_OperatorID = Operator;
-                    unit.ReleaseParams_Timestamp = DateTime.Now;
+                    unit.Status = TransactionStatus.RELEASED;
+
+                  
+                    t.Status = TransactionStatus.RELEASED;
+                    unit.LogisticTransactions.Add(t);
 
                 }
-
+               
                
 
             

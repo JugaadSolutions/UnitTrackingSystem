@@ -1,4 +1,4 @@
-namespace TesterApp
+namespace TesterApp.Models
 {
     using System;
     using System.Collections.Generic;
@@ -26,5 +26,7 @@ namespace TesterApp
         public virtual TestUnit TestUnit { get; set; }
 
         public virtual ICollection<TestTransaction> TestTransactions { get; set; }
+
+      
     }
 }

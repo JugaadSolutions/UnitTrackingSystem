@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Configuration;
 using TesterApp.Views;
 using TesterApp.Views.Tester;
+using TesterApp.Models;
 
 namespace TesterApp
 {
