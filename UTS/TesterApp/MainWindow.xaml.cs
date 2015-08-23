@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Configuration;
 using TesterApp.Views;
 using TesterApp.Views.Tester;
-using TesterApp.Models;
+using UTS;
 
 namespace TesterApp
 {
@@ -36,7 +36,7 @@ namespace TesterApp
 
 
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 tester = db.Testers.SingleOrDefault(t => t.Name == testerTag);
                 if (tester == null)

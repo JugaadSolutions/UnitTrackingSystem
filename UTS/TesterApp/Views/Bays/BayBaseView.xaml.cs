@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using TesterApp;
 using TesterApp.Views;
-using TesterApp.Models;
+using UTS;
 namespace TesterApp.Views.Bays
 {
     /// <summary>
@@ -25,7 +25,7 @@ namespace TesterApp.Views.Bays
     public partial class BayBaseView : UserControl
     {
         int BayID;
-        TesterApp.Models.Bay Bay;
+        UTS.Bay Bay;
         BayReadyView brv;
         BayActiveView bav;
 
@@ -74,7 +74,7 @@ namespace TesterApp.Views.Bays
                         break;
 
                     case 2: //Bay Active
-                        using (var db = new EntityModel())
+                        using (var db = new UTSDbContext())
                         {
                             Bay = db.Bays.Include("TestTransactions").SingleOrDefault(b => b.BayID == BayID);
 
@@ -144,7 +144,7 @@ namespace TesterApp.Views.Bays
 
         void RepairButton_Click(object sender, RoutedEventArgs e)
         {
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 tu = db.TestUnits
                        .Include("TestCycles")
@@ -175,7 +175,7 @@ namespace TesterApp.Views.Bays
         {
             TransactionStatus transactionStatus = TransactionStatus.REWORK;
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 DateTime ts = DateTime.Now;
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
@@ -251,7 +251,7 @@ namespace TesterApp.Views.Bays
         {
             TransactionStatus transactionStatus = TransactionStatus.TEST_FAILURE;
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 DateTime ts = DateTime.Now;
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
@@ -286,7 +286,7 @@ namespace TesterApp.Views.Bays
             else if (bav.ProgressPercentage < 100)
                 transactionStatus = TransactionStatus.TEST_COMPLETE_EARLY;
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 DateTime ts = DateTime.Now;
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
@@ -335,7 +335,7 @@ namespace TesterApp.Views.Bays
         {
             validateInput();
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 try
                 {
@@ -411,7 +411,7 @@ namespace TesterApp.Views.Bays
         void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             brv.RestartResumePopup.IsOpen = false;
-            brv.RestartResumeView.RestartButton.Click -= RestartButton_Click;
+            
             brv.RestartResumeView.ResumeButton.Click -= ResumeButton_Click;
             brv.RestartResumeView.CancelButton.Click -= CancelButton_Click;
         }
@@ -419,7 +419,7 @@ namespace TesterApp.Views.Bays
         void ResumeButton_Click(object sender, RoutedEventArgs e)
         {
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
                 transaction = new TestTransaction(Bay.BayID, brv.EngineerIDTextBox.Text, DateTime.Now, brv.RestartResumeView.RemarksTextBox.Text, 0);
@@ -445,7 +445,7 @@ namespace TesterApp.Views.Bays
 
         void RestartButton_Click(object sender, RoutedEventArgs e)
         {
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 Bay = db.Bays.SingleOrDefault(b => b.BayID == Bay.BayID);
                 tu = db.TestUnits.Include("UnitTestCycles")
@@ -486,7 +486,7 @@ namespace TesterApp.Views.Bays
             sv.StatusDataPopup.IsOpen = false;
 
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 if (sv.Status == true)
                 {
@@ -528,7 +528,7 @@ namespace TesterApp.Views.Bays
             if (Bay.Status == 2)
             {
 
-                using (EntityModel db = new EntityModel())
+                using (UTSDbContext db = new UTSDbContext())
                 {
                     int testcycleId = cycle.TestCycleID;
                     Bay = db.Bays.SingleOrDefault(b => b.BayID == BayID);

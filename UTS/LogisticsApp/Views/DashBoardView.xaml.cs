@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LogisticsApp;
+using UTS;
 
 namespace LogisticsApp.Views
 {
@@ -23,10 +24,10 @@ namespace LogisticsApp.Views
     /// 
 
 
-   
+
     public partial class DashBoardView : UserControl
     {
-        
+
         private string Location;
         private string Operator;
         private string Stage;
@@ -41,7 +42,7 @@ namespace LogisticsApp.Views
             TransactionCollection = new TransactionCollection();
         }
 
-        public DashBoardView(string Location, string p,string stage)
+        public DashBoardView(string Location, string p, string stage)
         {
             // TODO: Complete member initialization
             this.Location = Location;
@@ -53,7 +54,7 @@ namespace LogisticsApp.Views
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 var unit = db.TestUnits.SingleOrDefault(u => u.SerialNo == SerialNoTextBox.Text);
                 if (unit == null)
@@ -62,14 +63,16 @@ namespace LogisticsApp.Views
                     unit.SerialNo = SerialNoTextBox.Text;
                     LogisticTransaction lt = new LogisticTransaction();
 
-                    lt.Location= Location;
-                    lt.OperatorID= Operator;
+                    lt.Location = Location;
+                    lt.OperatorID = Operator;
                     lt.Timestamp = DateTime.Now;
                     lt.Status = TransactionStatus.DISPATCHED;
                     unit.Status = (int)TransactionStatus.DISPATCHED;
 
-                    unit.LogisticTransactions.Add(lt);
+                    unit.LogisticsTransactions.Add(lt);
+
                     
+
                     db.TestUnits.Add(unit);
                     db.SaveChanges();
 
@@ -90,9 +93,9 @@ namespace LogisticsApp.Views
 
                         db.SaveChanges();
 
-                       
+
                     }
-                    
+
                 }
             }
 
@@ -117,7 +120,7 @@ namespace LogisticsApp.Views
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 var unit = db.TestUnits.SingleOrDefault(u => u.SerialNo == SerialNoTextBox.Text);
                 if (unit == null)
@@ -138,67 +141,100 @@ namespace LogisticsApp.Views
         {
             TransactionCollection.Clear();
 
-            foreach( Transaction t in unit.LogisticTransactions)
+            foreach (Transaction t in unit.LogisticsTransactions)
             {
                 TransactionCollection.Add(t);
             }
 
-         
+
 
 
         }
 
         private void updateUnitStatus(TestUnit unit)
         {
-             LogisticTransaction t = new LogisticTransaction();
+            LogisticTransaction t = new LogisticTransaction();
 
-              t.Location = Location;
-             t.OperatorID = Operator;
-             t.Timestamp = DateTime.Now;
+            t.Location = Location;
+            t.OperatorID = Operator;
+            t.Timestamp = DateTime.Now;
 
-            if ((TransactionStatus)unit.Status == TransactionStatus.REWORK)
+            if ((TransactionStatus)unit.Status == TransactionStatus.REWORK && (Stage == "Logistics"))
             {
 
                 unit.Status = (int)TransactionStatus.DISPATCHED;
 
-                
 
 
-              
+
+
                 t.Status = TransactionStatus.DISPATCHED;
-                unit.LogisticTransactions.Add(t);
-                
+                unit.LogisticsTransactions.Add(t);
+
                 return;
 
             }
 
-                if ((TransactionStatus)unit.Status == TransactionStatus.DISPATCHED)
-                {
+            if ((TransactionStatus)unit.Status == TransactionStatus.DISPATCHED && (Stage == "Logistics"))
+            {
 
-                    unit.Status = TransactionStatus.RECEIVED;
+                unit.Status = TransactionStatus.RECEIVED;
 
-                   
-                    t.Status = TransactionStatus.RECEIVED;
-                    unit.LogisticTransactions.Add(t);
-                    return;
 
-                }
+                t.Status = TransactionStatus.RECEIVED;
+                unit.LogisticsTransactions.Add(t);
+                return;
 
-                if ((TransactionStatus)unit.Status == TransactionStatus.RECEIVED)
-                {
+            }
 
-                    unit.Status = TransactionStatus.RELEASED;
+            if ((TransactionStatus)unit.Status == TransactionStatus.RECEIVED && (Stage == "Production"))
+            {
 
-                  
-                    t.Status = TransactionStatus.RELEASED;
-                    unit.LogisticTransactions.Add(t);
+                unit.Status = TransactionStatus.RELEASED;
 
-                }
-               
-               
 
-            
-            
+                t.Status = TransactionStatus.RELEASED;
+                unit.LogisticsTransactions.Add(t);
+
+                return;
+
+            }
+
+            if ((TransactionStatus)unit.Status == TransactionStatus.RECEIVED && (Stage == "Production"))
+            {
+
+                unit.Status = TransactionStatus.RELEASED;
+
+
+                t.Status = TransactionStatus.RELEASED;
+                unit.LogisticsTransactions.Add(t);
+
+                return;
+
+            }
+
+            if ((unit.Status == TransactionStatus.RECEIVED
+                || unit.Status == (TransactionStatus.TEST_COMPLETE_DELAY)
+                || (unit.Status == TransactionStatus.TEST_COMPLETE_EARLY)
+                || (unit.Status == TransactionStatus.TEST_COMPLETE_ONTIME))
+                
+                && (Stage == "Production"))
+            {
+
+                unit.Status = TransactionStatus.FINISHED;
+
+
+                t.Status = TransactionStatus.FINISHED;
+                unit.LogisticsTransactions.Add(t);
+
+                return;
+
+            }
+
+
+
+
+
         }
     }
 }

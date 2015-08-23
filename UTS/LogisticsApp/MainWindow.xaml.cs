@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LogisticsApp.Views;
 using System.Configuration;
+using UTS;
 namespace LogisticsApp
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace LogisticsApp
 
             Location = ConfigurationManager.AppSettings["Location"];
 
-            using( EntityModel db = new EntityModel())
+            using( UTSDbContext db = new UTSDbContext())
             {
                 try
                 {
@@ -65,11 +66,13 @@ namespace LogisticsApp
                 BannerTextBlock.Text += Environment.NewLine + Location +  " - LOGISTICS APP";
 
             }
-            else if (Stage == "Finishing")
+            else if (Stage == "Production")
             {
-                BannerTextBlock.Text += Environment.NewLine + Location + " - FINISHING APP";
+                BannerTextBlock.Text += Environment.NewLine + Location + " - PRODUCTION APP";
 
             }
+
+            
 
            
                

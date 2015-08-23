@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticsApp", "LogisticsAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterApp", "TesterApp\TesterApp.csproj", "{C80817BD-9D7A-4DC3-88A3-BBE96CA5A82A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityModel", "EntityModel\EntityModel.csproj", "{DD72019F-64BA-4720-B05E-06CF0D384093}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C80817BD-9D7A-4DC3-88A3-BBE96CA5A82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80817BD-9D7A-4DC3-88A3-BBE96CA5A82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80817BD-9D7A-4DC3-88A3-BBE96CA5A82A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD72019F-64BA-4720-B05E-06CF0D384093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD72019F-64BA-4720-B05E-06CF0D384093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD72019F-64BA-4720-B05E-06CF0D384093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD72019F-64BA-4720-B05E-06CF0D384093}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

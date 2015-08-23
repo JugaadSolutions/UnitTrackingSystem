@@ -66,25 +66,6 @@
     <Compile Include="Clock\ClockDisplay.xaml.cs">
       <DependentUpon>ClockDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bay.cs" />
-    <Compile Include="Models\BayBreakdown.cs" />
-    <Compile Include="Models\EntityModel.cs" />
-    <Compile Include="Models\Family.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\LogisticTransaction.cs" />
-    <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\Sector.cs" />
-    <Compile Include="Models\Shift.cs" />
-    <Compile Include="Models\TestCycle.cs" />
-    <Compile Include="Models\Tester.cs" />
-    <Compile Include="Models\TesterBreakdown.cs" />
-    <Compile Include="Models\TestTransaction.cs" />
-    <Compile Include="Models\TestUnit.cs" />
-    <Compile Include="Models\Transaction.cs" />
-    <Compile Include="ViewModels\TestTransactionVM.cs" />
-    <Compile Include="ViewModels\TestUnitVM.cs" />
-    <Compile Include="ViewModels\TestCycleVM.cs" />
     <Compile Include="Views\Bays\BayActiveView.xaml.cs">
       <DependentUpon>BayActiveView.xaml</DependentUpon>
     </Compile>
@@ -212,6 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\repair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityModel\EntityModel.csproj">
+      <Project>{dd72019f-64ba-4720-b05e-06cf0d384093}</Project>
+      <Name>EntityModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,20 +1,18 @@
-
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using UTS;
-namespace LogisticsApp.Migrations
+namespace EntityModel.Migrations
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<UTSDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<UTS.UTSDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(UTSDbContext context)
+        protected override void Seed(UTS.UTSDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

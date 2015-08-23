@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using TesterApp;
 using TesterApp.Views.Bays;
-using TesterApp.Models;
+using UTS;
 
 namespace TesterApp.Views.Tester
 {
@@ -26,7 +26,7 @@ namespace TesterApp.Views.Tester
     {
         public enum TesterStatus { ACTIVE =0 , BREAKDOWN = 1}
         public enum TesterBreakdownStatus { OPEN = 1, CLOSED = 0 }
-        TesterApp.Models.Tester Tester;
+        UTS.Tester Tester;
 
         StatusUpdateView sv;
 
@@ -36,7 +36,7 @@ namespace TesterApp.Views.Tester
         {
             InitializeComponent();
 
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 Tester = db.Testers.Include("Bays").SingleOrDefault(t => t.Name == name);
                 
@@ -53,7 +53,7 @@ namespace TesterApp.Views.Tester
 
         void createTesterView()
         {
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 Tester = db.Testers.Include("Bays").SingleOrDefault(t => t.TesterID == Tester.TesterID);
             }
@@ -114,7 +114,7 @@ namespace TesterApp.Views.Tester
         {
             sv.StatusDataPopup.IsOpen = false;
             TesterBreakdown bd;
-            using (EntityModel db = new EntityModel())
+            using (UTSDbContext db = new UTSDbContext())
             {
                 Tester = db.Testers.Include("TesterBreakdowns").SingleOrDefault(t => t.TesterID == Tester.TesterID);
 
