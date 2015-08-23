@@ -1,0 +1,37 @@
+﻿@section menu{
+    @Html.Partial("MenuView")
+}
+
+@section scripts{
+    <script type="text/javascript">
+   $(function(){
+    
+      $('#loginbtn').click(function () {
+                document.location = '@Url.Action("UnitStatusUpdate", "Logistics")';
+                })
+    
+    });
+    </script>
+    }
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" style="margin:4% 0% 0% 20%">
+            <label>Operator Id:</label>
+            <input type="text" class="form-control" id="operator">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="margin-top:1%;margin-left:30%">
+           
+            <button type="button" class="btn btn-info" id="loginbtn">
+                <span>Login</span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+</div>
