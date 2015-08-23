@@ -13,7 +13,7 @@ namespace BSDSPortal.Controllers
         {
             return View();
         }
-        public ActionResult UnitStatusUpdate()
+        public ActionResult UnitStatusUpdate(string id)
         {
             return View();
         }

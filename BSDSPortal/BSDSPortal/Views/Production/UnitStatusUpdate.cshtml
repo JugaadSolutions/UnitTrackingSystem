@@ -3,6 +3,17 @@
     @Html.Partial("MenuView")
 }
 
+@section scripts{
+<script type="text/javascript">
+   $(function(){
+
+       $('#logoutbtn').click(function () {
+                document.location = '@Url.Action("Index", "Home")';
+                })
+
+    });
+</script>
+}
 
 <div class="container">
     <div class="row">

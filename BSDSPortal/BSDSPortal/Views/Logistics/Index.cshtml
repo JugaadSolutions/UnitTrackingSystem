@@ -5,9 +5,10 @@
 @section scripts{
     <script type="text/javascript">
    $(function(){
-    
-      $('#loginbtn').click(function () {
-                document.location = '@Url.Action("UnitStatusUpdate", "Logistics")';
+      
+       $('#loginbtn').click(function () {
+                var Operator = $('#OperatorId').val();
+                document.location = '/Logistics/UnitStatusUpdate/' + Operator;
                 })
     
     });
@@ -17,7 +18,7 @@
     <div class="row">
         <div class="col-md-4" style="margin:4% 0% 0% 20%">
             <label>Operator Id:</label>
-            <input type="text" class="form-control" id="operator">
+            <input type="text" class="form-control" id="OperatorId">
 
         </div>
     </div>
