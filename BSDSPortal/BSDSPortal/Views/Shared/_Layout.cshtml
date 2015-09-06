@@ -41,13 +41,16 @@
                    style="margin-right:5px;margin-left:-10px;color:white;font-family:'Arial Rounded MT';font-size:xx-large;background-color:green;border:green medium solid">
                     Bay Status Portal
                     <a href='@Url.Action("Index", "Home")' style="float:right;">
-                        <img src="~/Images/green-home-icon.png" style="width:50px;height:40px;padding:1px 9px 3px 1px" />
+                        <img src="~/Images/green-home-icon.png" style="width:50px;height:40px;padding:1px 9px 3px 1px" id="homeimg" />
                     </a> 
                     <a href='@Url.Action("Index", "Logistics")' style="float:right;">
-                        <img src="~/Images/Logistics.png" style="width:50px;height:40px;padding:1px 9px 3px 1px" />
+                        <img src="~/Images/Logistics.png" style="width:50px;height:40px;padding:1px 9px 3px 1px" id="logisticsimg"/>
                     </a> 
                     <a href='@Url.Action("Index", "Production")' style="float:right;">
-                        <img src="~/Images/Production.png" style="width:50px;height:40px;padding:1px 9px 3px 1px;" />
+                        <img src="~/Images/Production.png" style="width:50px;height:40px;padding:1px 9px 3px 1px;" id="productionimg" />
+                    </a> 
+                    <a href='@Url.Action("Index", "Test")' style="float:right;">
+                        <img src="~/Images/testingicon.jpeg" style="width:50px;height:40px;padding:1px 9px 3px 1px;" id="testimg" />
                     </a> 
                 </p>
              
@@ -115,6 +118,11 @@
             $('#Realbtn').click(function () {
                 document.location = '@Url.Action("RealTime","Home")';
             })
+
+            $('#homeimg').jqxTooltip({ content: ' <i>Home</i><br />', position: 'mouse', name: 'imgTooltip' });
+            $('#logisticsimg').jqxTooltip({ content: ' <i>Logistics</i><br />', position: 'mouse', name: 'imgTooltip' });
+            $('#productionimg').jqxTooltip({ content: ' <i>Production</i><br />', position: 'mouse', name: 'imgTooltip' });
+            $('#testimg').jqxTooltip({ content: '<i>Testing</i><br />', position: 'mouse', name: 'imgTooltip' });
         });
     </script>
     @RenderSection("scripts", required: false)
