@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ProductionController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\SectorsController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TestersController.cs" />
     <Compile Include="Controllers\UnitStatusController.cs" />
     <Compile Include="Global.asax.cs">
@@ -610,6 +611,7 @@
     <Content Include="Content\dashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\testingicon.jpeg" />
     <Content Include="Scripts\app.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -795,6 +797,7 @@
     <Content Include="Views\Logistics\UnitStatusUpdate.cshtml" />
     <Content Include="Views\Production\Index.cshtml" />
     <Content Include="Views\Production\UnitStatusUpdate.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
