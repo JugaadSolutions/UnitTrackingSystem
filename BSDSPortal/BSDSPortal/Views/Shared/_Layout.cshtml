@@ -52,6 +52,9 @@
                     <a href='@Url.Action("Index", "Test")' style="float:right;">
                         <img src="~/Images/testingicon.jpeg" style="width:50px;height:40px;padding:1px 9px 3px 1px;" id="testimg" />
                     </a> 
+                    <a href='@Url.Action("Index", "Packaging")' style="float:right;">
+                        <img src="~/Images/PackagingIcon.jpeg" style="width:50px;height:40px;padding:1px 9px 3px 1px;" id="packagimg" />
+                    </a> 
                 </p>
              
             </div>
@@ -123,6 +126,7 @@
             $('#logisticsimg').jqxTooltip({ content: ' <i>Logistics</i><br />', position: 'mouse', name: 'imgTooltip' });
             $('#productionimg').jqxTooltip({ content: ' <i>Production</i><br />', position: 'mouse', name: 'imgTooltip' });
             $('#testimg').jqxTooltip({ content: '<i>Testing</i><br />', position: 'mouse', name: 'imgTooltip' });
+            $('#packagimg').jqxTooltip({ content: '<i>Packaging</i><br />', position: 'mouse', name: 'imgTooltip' });
         });
     </script>
     @RenderSection("scripts", required: false)

@@ -178,6 +178,7 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LogisticsController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\PackagingController.cs" />
     <Compile Include="Controllers\ProductionController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\SectorsController.cs" />
@@ -602,6 +603,7 @@
     <Content Include="Images\IDF4TestLab.jpg" />
     <Content Include="Images\IDF4TestLab1.jpg" />
     <Content Include="Images\Logistics.png" />
+    <Content Include="Images\PackagingIcon.jpeg" />
     <Content Include="Images\Production.png" />
     <Content Include="Images\Release.jpg" />
     <Content Include="Images\schneider.png" />
@@ -798,6 +800,7 @@
     <Content Include="Views\Production\Index.cshtml" />
     <Content Include="Views\Production\UnitStatusUpdate.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Packaging\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
