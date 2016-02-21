@@ -3,44 +3,184 @@
 }
 
 @section scripts{
+    <script src="~/Scripts/knockout-3.3.0.js"></script>
+    <script src="~/Scripts/JQWidgets/jqxknockout.js"></script>
     <script type="text/javascript">
-   $(function(){
+        $(function () {
+            var data = [];
+            var GridViewModel = {
+                Transactions: ko.observableArray(data)
+            };
+            ko.applyBindings(GridViewModel);
 
-       $('#logoutbtn').click(function () {
+
+            //debugger;
+            var GridModel = function (action, controller) {
+                var link = '@Url.Action("Action","Controller")';
+                link = link.replace("Action", action.valueOf());
+                link = link.replace("Controller", controller);
+
+                var unitUpdateInfo = {
+                    Operator: '@ViewBag.Operator',
+                    Location: '@ViewBag.Location',
+                    SerialNo: $('#SerialNoInput').val(),
+                    Department: 'Logistics'
+
+                };
+                //this.transactionItems = ko.observableArray();
+                var self = this;
+
+                $.ajax({
+
+                    url: link,
+                    data: "{'UnitUpdateInfo':" + JSON.stringify(unitUpdateInfo) + "}",
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json",
+                    error: function () { alert("Connection to Server Failed!!") },
+                    success: function (transactions) {
+
+                        debugger;
+                        GridViewModel.Transactions(transactions);
+
+                    }
+
+                });
+
+
+            }
+
+            $('#logoutbtn').click(function () {
                 document.location = '@Url.Action("Index", "Home")';
-                })
+            });
 
-    });
+            $('#updatebtn').on('click', function () {
+
+                debugger;
+
+
+                var model = new GridModel("LogisticsUpdate", "Home");
+
+                debugger;
+                var source =
+                    {
+                        datatype: "observablearray",
+                        datafields: [{ name: 'SerialNo', type: 'string' },
+                            { name: 'Status', type: 'string' },
+                            { name: 'Timestamp', type: 'date' },
+                            { name: 'OperatorID', type: 'string' },
+                            { name: 'Location', type: 'string' }
+                        ],
+                        id: 'id',
+                        localdata: GridViewModel.Transactions
+
+                    };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $('#UnitStatusGrid').jqxGrid(
+                    {
+                        width: '100%',
+                        source: dataAdapter,
+                        autoheight: true,
+                        editable: false,
+                        columns: [
+                             { text: 'Operator', dataField: 'OperatorID', width: 100 },
+                             { text: 'Location', dataField: 'Location', width: 100 },
+                      
+                             { text: 'Status', dataField: 'Status', width: 100 },
+                     
+                            { text: 'Date Time', cellsformat: 'dd/MMM/yyyy HH:mm:ss', dataField: 'Timestamp', width: 400 }
+
+                        ]
+                    });
+
+            });
+
+
+
+            $('#searchbtn').click(function () {
+
+                var model = new GridModel("SearchUnitTransactions", "Home");
+
+                debugger;
+                var source =
+                    {
+                        datatype: "observablearray",
+                        datafields: [{ name: 'SerialNo', type: 'string' },
+                            { name: 'Status', type: 'string' },
+                            { name: 'Timestamp', type: 'date' },
+                            { name: 'OperatorID', type: 'string' },
+                            { name: 'Location', type: 'string' }
+                        ],
+                        id: 'id',
+                        localdata: GridViewModel.Transactions
+
+                    };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $('#UnitStatusGrid').jqxGrid(
+                    {
+                        width: '100%',
+                        source: dataAdapter,
+                        autoheight: true,
+                        editable: false,
+                        columns: [
+                             { text: 'Operator', dataField: 'OperatorID', width: 100 },
+                             { text: 'Location', dataField: 'Location', width: 100 },
+
+                             { text: 'Status', dataField: 'Status', width: 100 },
+
+                            { text: 'Date Time', cellsformat: 'dd/MMM/yyyy HH:mm:ss', dataField: 'Timestamp', width: 400 }
+
+                        ]
+                    });
+
+            });
+
+
+        });
     </script>
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4" style="margin:4% 0% 0% 20%">
+<div id="ContentDiv" class="roundedDiv container-fluid"
+     style="border:green medium solid;border-width:2px; height:100%">
+    <div class="row" style="margin-top:5%;text-align:right">
+        <div class="col-md-2 col-md-offset-3">
             <label>Serial Number:</label>
-            <input type="text" class="form-control" id="operator">
 
         </div>
+        <div class="col-md-5">
+            <input type="text" class="form-control input-md" id="SerialNoInput">
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-4" style="margin-top:1%;margin-left:26%">
+    <div class="row" style="margin-top:2%">
+        <div class="col-md-2 col-md-offset-3">
 
             <button type="button" class="btn btn-info" id="updatebtn">
                 <span>Update</span>
             </button>
+        </div>
+        <div class="col-md-2">
             <button type="button" class="btn btn-info" id="searchbtn">
                 <span>Search</span>
             </button>
-
+        </div>
+        <div class="col-md-2">
             <button type="button" class="btn btn-info" id="logoutbtn">
                 <span>Logout</span>
             </button>
-
-
         </div>
 
+
     </div>
-
-
-
+    <div class="row" style="margin-top:10%">
+        <div class="col-md-12">
+            <div id="UnitStatusGrid">
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
+
+

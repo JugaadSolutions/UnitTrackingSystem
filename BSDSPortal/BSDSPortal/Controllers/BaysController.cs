@@ -13,13 +13,12 @@ namespace BSDSPortal.Controllers
 {
     public class BaysController : Controller
     {
-        private BSDSContext db = new BSDSContext();
+        private UTSContext db = new UTSContext();
 
         // GET: Bays
         public async Task<ActionResult> Index()
         {
-            var bays = db.Bays.Include(b => b.Tester);
-            return View(await bays.ToListAsync());
+            return View(await db.Bays.ToListAsync());
         }
 
         // GET: Bays/Details/5
@@ -40,7 +39,6 @@ namespace BSDSPortal.Controllers
         // GET: Bays/Create
         public ActionResult Create()
         {
-            ViewBag.TesterID = new SelectList(db.Testers, "TesterID", "Name");
             return View();
         }
 
@@ -49,7 +47,7 @@ namespace BSDSPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "BayID,Name,TesterID")] Bay bay)
+        public async Task<ActionResult> Create([Bind(Include = "BayID,Name,Status,Type")] Bay bay)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +56,6 @@ namespace BSDSPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TesterID = new SelectList(db.Testers, "TesterID", "Name", bay.TesterID);
             return View(bay);
         }
 
@@ -74,7 +71,6 @@ namespace BSDSPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TesterID = new SelectList(db.Testers, "TesterID", "Name", bay.TesterID);
             return View(bay);
         }
 
@@ -83,7 +79,7 @@ namespace BSDSPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "BayID,Name,TesterID")] Bay bay)
+        public async Task<ActionResult> Edit([Bind(Include = "BayID,Name,Status,Type")] Bay bay)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +87,6 @@ namespace BSDSPortal.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.TesterID = new SelectList(db.Testers, "TesterID", "Name", bay.TesterID);
             return View(bay);
         }
 

@@ -172,7 +172,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaysController.cs" />
-    <Compile Include="Controllers\BayStatusController.cs" />
     <Compile Include="Controllers\FamiliesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -180,59 +179,21 @@
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ProductionController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
-    <Compile Include="Controllers\SectorsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\TestersController.cs" />
     <Compile Include="Controllers\UnitStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506240310562_TransactionParams.cs" />
-    <Compile Include="Migrations\201506240310562_TransactionParams.Designer.cs">
-      <DependentUpon>201506240310562_TransactionParams.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506240331505_Location_DataType.cs" />
-    <Compile Include="Migrations\201506240331505_Location_DataType.Designer.cs">
-      <DependentUpon>201506240331505_Location_DataType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506240338177_TimestampNullable.cs" />
-    <Compile Include="Migrations\201506240338177_TimestampNullable.Designer.cs">
-      <DependentUpon>201506240338177_TimestampNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506240339167_ReleasedRemoval.cs" />
-    <Compile Include="Migrations\201506240339167_ReleasedRemoval.Designer.cs">
-      <DependentUpon>201506240339167_ReleasedRemoval.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506240343054_NullableProductModel.cs" />
-    <Compile Include="Migrations\201506240343054_NullableProductModel.Designer.cs">
-      <DependentUpon>201506240343054_NullableProductModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.cs" />
-    <Compile Include="Migrations\201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.Designer.cs">
-      <DependentUpon>201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507100417148_finishparams.cs" />
-    <Compile Include="Migrations\201507100417148_finishparams.Designer.cs">
-      <DependentUpon>201507100417148_finishparams.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bay.cs" />
-    <Compile Include="Models\BayBreakdown.cs" />
-    <Compile Include="Models\BayStatus.cs" />
-    <Compile Include="Models\TransactionParameters.cs" />
-    <Compile Include="Models\BSDSContext.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\UTSContext.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Models\Sector.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Shift.cs" />
-    <Compile Include="Models\Tester.cs" />
-    <Compile Include="Models\TesterBreakdown.cs" />
-    <Compile Include="Models\TestTransaction.cs" />
-    <Compile Include="Models\TestCycle.cs" />
-    <Compile Include="Models\TestUnit.cs" />
-    <Compile Include="Models\UnitStatus.cs" />
+    <Compile Include="Models\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -594,6 +555,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
     <Content Include="Images\Dispatch.jpg" />
+    <Content Include="Images\SON.png" />
+    <Content Include="Images\SON1.png" />
+    <Content Include="Images\Tester.JPG" />
+    <Content Include="Images\IDF4TestLab2.JPG" />
     <Content Include="Images\energyEfficiency.jpg" />
     <Content Include="Images\Finishing.jpg" />
     <Content Include="Images\Folder.jpg" />
@@ -640,6 +605,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\BSDSPortal.pubxml" />
     <None Include="Scripts\jquery-1.11.2.intellisense.js" />
+    <Content Include="Scripts\appScripts\UpdateUnitStatusGrid.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -768,16 +734,6 @@
     <Content Include="Views\Sectors\Details.cshtml" />
     <Content Include="Views\Sectors\Edit.cshtml" />
     <Content Include="Views\Sectors\Index.cshtml" />
-    <Content Include="Views\Testers\Create.cshtml" />
-    <Content Include="Views\Testers\Delete.cshtml" />
-    <Content Include="Views\Testers\Details.cshtml" />
-    <Content Include="Views\Testers\Edit.cshtml" />
-    <Content Include="Views\Testers\Index.cshtml" />
-    <Content Include="Views\Bays\Create.cshtml" />
-    <Content Include="Views\Bays\Delete.cshtml" />
-    <Content Include="Views\Bays\Details.cshtml" />
-    <Content Include="Views\Bays\Edit.cshtml" />
-    <Content Include="Views\Bays\Index.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
@@ -792,39 +748,25 @@
     <Content Include="Views\Home\TesterGroup_1MVA.cshtml" />
     <Content Include="Views\Shared\MenuView.cshtml" />
     <Content Include="Views\UnitStatus\Index.cshtml" />
-    <Content Include="Views\BayStatus\Index.cshtml" />
     <Content Include="Views\Logistics\Index.cshtml" />
     <Content Include="Views\Logistics\UnitStatusUpdate.cshtml" />
     <Content Include="Views\Production\Index.cshtml" />
     <Content Include="Views\Production\UnitStatusUpdate.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Shared\OperatorLogin.cshtml" />
+    <Content Include="Views\Test\BaySelection.cshtml" />
+    <Content Include="Views\Bays\Create.cshtml" />
+    <Content Include="Views\Bays\Delete.cshtml" />
+    <Content Include="Views\Bays\Details.cshtml" />
+    <Content Include="Views\Bays\Edit.cshtml" />
+    <Content Include="Views\Bays\Index.cshtml" />
+    <Content Include="Views\Test\BayIdle.cshtml" />
+    <Content Include="Views\Test\BayInUse.cshtml" />
+    <Content Include="Views\Test\BayBreakDown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506240310562_TransactionParams.resx">
-      <DependentUpon>201506240310562_TransactionParams.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506240331505_Location_DataType.resx">
-      <DependentUpon>201506240331505_Location_DataType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506240338177_TimestampNullable.resx">
-      <DependentUpon>201506240338177_TimestampNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506240339167_ReleasedRemoval.resx">
-      <DependentUpon>201506240339167_ReleasedRemoval.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506240343054_NullableProductModel.resx">
-      <DependentUpon>201506240343054_NullableProductModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.resx">
-      <DependentUpon>201506250855172_TesterBreakDownStatus_TransactionParam_NullableStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507100417148_finishparams.resx">
-      <DependentUpon>201507100417148_finishparams.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

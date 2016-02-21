@@ -13,7 +13,7 @@ namespace BSDSPortal.Controllers
 {
     public class FamiliesController : Controller
     {
-        private BSDSContext db = new BSDSContext();
+        private UTSContext db = new UTSContext();
 
         // GET: Families
         public async Task<ActionResult> Index()

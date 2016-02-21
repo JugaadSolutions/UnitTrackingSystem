@@ -16,7 +16,8 @@ namespace BSDSPortal.Models
         [Display(Name = "Location Name")]
         public String Name { get; set; }
 
-        public virtual ICollection<Sector> Sectors { get; set; }
+       
+       
     }
 
     public class LocationDTO

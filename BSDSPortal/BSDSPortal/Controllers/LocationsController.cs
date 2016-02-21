@@ -13,7 +13,7 @@ namespace BSDSPortal.Controllers
 {
     public class LocationsController : Controller
     {
-        private BSDSContext db = new BSDSContext();
+        private UTSContext db = new UTSContext();
 
         // GET: Locations
         public async Task<ActionResult> Index()

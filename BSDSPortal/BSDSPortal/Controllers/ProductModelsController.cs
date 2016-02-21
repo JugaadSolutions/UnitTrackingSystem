@@ -13,7 +13,7 @@ namespace BSDSPortal.Controllers
 {
     public class ProductModelsController : Controller
     {
-        private BSDSContext db = new BSDSContext();
+        private UTSContext db = new UTSContext();
 
         // GET: ProductModels
         public async Task<ActionResult> Index()

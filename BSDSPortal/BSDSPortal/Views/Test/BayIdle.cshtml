@@ -1,0 +1,126 @@
+﻿@section menu{
+    @Html.Partial("MenuView")
+
+}
+
+
+@{
+    ViewBag.Title = "NewTest";
+    var temp = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var modelJson = temp.Serialize(ViewBag.Products);
+}
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            debugger;
+            var data = @Html.Raw(modelJson);
+
+            //var data = [{ "ProductModelID": 1, "Name": "P1" }];
+
+
+
+            var source =
+                      {
+                          datatype: "json",
+                          datafields: [
+                              { name: "ProductModelID" },
+                              { name: "Name" },
+
+                          ],
+
+                          localdata: data
+
+                      };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            $('#ProductComboBox').jqxComboBox({
+                source: dataAdapter, displayMember: "Name", valueMember: "ProductModelID",
+                width: '200px', height: '25px',
+            });
+
+            $('#StartButton').on('click', function () {
+                var item = $('#ProductComboBox').jqxComboBox('getSelectedItem'); 
+
+                debugger;
+                var unitUpdateInfo = {
+                   
+                    Operator: '',
+                    Location: '',
+                    SerialNo: $('#SerialNo').val(),
+                    Department: 'Testing',
+                    ProductModelID : item.value
+
+
+                };
+                $.ajax({
+
+                    url: '@Url.Action("StartTest", "Test")',
+                    data: "{'UnitUpdateInfo':" + JSON.stringify(unitUpdateInfo) + "}",
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json",
+                    error: function () { alert("Connection to Server Failed!!") },
+                    success: function (location) {
+                        //debugger;
+                        //if (location === "") {
+                        //    alert("Operator Unauthorized!!");
+                        //    return;
+                        //}
+                       @*// var urlString = '@Url.Action("BaySelection", "Test", new { OperatorID = "Replace",Location = "Replace_2",Department="Testing"  })';
+                        //var opID = @ViewBag.OperatorInfo.val();*@
+
+                        //var url = urlString.replace("Replace", opID);
+                        //window.location.href = url.replace("Replace_2", location);
+                    }
+                })
+            });
+
+
+        });
+    </script>
+}
+
+
+<div id="ContentDiv" class="roundedDiv container-fluid"
+     style="border:green medium solid;border-width:2px;height:100%">
+
+    <div class="row" style="margin-top:5%">
+        <div class="col-md-3" style="text-align:right">
+
+            <label id="operatorId">Serial No:</label>
+
+        </div>
+        <div class="col-md-3">
+
+            <input class=" form-control input-md" id="SerialNo" type="text">
+
+        </div>
+    </div>
+
+
+    <div class="row" style="margin-top:5%">
+        <div class="col-md-3" style="text-align:right">
+
+            <label id="operatorId">Model:</label>
+
+        </div>
+
+        <div class="col-md-3">
+            <div id="ProductComboBox">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin:2%">
+        <div class="col-md-2 col-md-offset-3">
+            <button id="StartButton" class="btn btn-info btn-lg ">
+                Start
+            </button>
+        </div>
+    </div>
+
+</div>

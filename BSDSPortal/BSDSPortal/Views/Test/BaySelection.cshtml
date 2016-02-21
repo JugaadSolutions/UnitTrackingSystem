@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "BaySelection";
+}
+@section menu{
+    @Html.Partial("MenuView")
+}
+@section scripts{
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/jstree.js"></script>
+    <script src="~/Styles/jquery.hotkeys-0.7.9.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Create jqxExpander
+            $('#jqxExpander').jqxExpander({ showArrow: true, width: '300px', height: '370px' });
+
+            $("#jqxExpander").bind('expanded', function (event) {
+                alert("Expanded");
+            });
+            // Create jqxTree
+            var source = [
+                {
+
+                    icon: "../../Images/Tester.jpg", label: "1MVA", expanded: false, items: [
+                         { icon: "../../Images/Tester.jpg", label: "173A", status: "1" },
+                         { icon: "../../Images/Tester.jpg", label: "173B", status: "1" },
+                         { icon: "../../Images/Tester.jpg", label: "174A", status: "1" },
+                         { icon: "../../Images/Tester.jpg", label: "174B", status: "1" },
+                         { icon: "../../Images/Tester.jpg", label: "175A", status: "1" },
+                         { icon: "../../Images/Tester.jpg", label: "175B", status: "1" }
+                    ]
+                  },
+                  {
+                      icon: "../../Images/Tester.jpg", label: "500KVA", selected: false, expanded: false, items: [
+
+
+                           { icon: "../../Images/Tester.jpg", label: "169B" },
+                           { icon: "../../Images/Tester.jpg", label: "170A" },
+                           { icon: "../../Images/Tester.jpg", label: "170B" },
+                           { icon: "../../Images/Tester.jpg", label: "171A" },
+                           { icon: "../../Images/Tester.jpg", label: "171B" },
+                           { icon: "../../Images/Tester.jpg", label: "172A" },
+                           { icon: "../../Images/Tester.jpg", label: "172B" }
+                      ]
+                  },
+                  {
+                      icon: "../../Images/Tester.jpg", label: "VALHAL/250KVA", selected: false, expanded: false, items: [
+
+
+                           { icon: "../../Images/Tester.jpg", label: "167A" },
+                           { icon: "../../Images/Tester.jpg", label: "167B" },
+                           { icon: "../../Images/Tester.jpg", label: "168A" },
+                           { icon: "../../Images/Tester.jpg", label: "168B" },
+                           { icon: "../../Images/Tester.jpg", label: "169A" }
+
+                      ]
+                  }
+
+            ];
+
+            $('#jqxTree').jqxTree({ source: source, width: '100%', height: '80%' });
+            //$('#jqxTree').jqxTree('selectItem', null);
+
+
+            $('#jqxTree').on('expand', function (event) {
+                var args = event.args;
+                var item = $('#jqxTree').jqxTree('getItem', args.element);
+                if (item.level == 0)
+                    alert("Selected: " + item.label);
+            });
+
+            $('#jqxTree').on('select', function (event) {
+                var args = event.args;
+                var item = $('#jqxTree').jqxTree('getItem', args.element);
+                if (item.level > 0)
+                {
+                    var urlString = '@Url.Action("TestStatusUpdate", "Test", new { Name = "Replace" })';
+                    
+                    var url = urlString.replace("Replace", item.label);
+                    window.location.href = url;
+                }
+                   
+            });
+        });
+    </script>
+}
+
+
+<div id="ContentDiv" class="roundedDiv text-center" style="border:green medium solid;border-width:2px; ">
+    <div class="row">
+        <div class="col-md-6">
+            <div id='jqxExpander' style="margin:2%;">
+                <div>
+                    IDF-4
+                </div>
+
+                <div id='jqxTree'>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5" style="margin:2%">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6" style="text-align:right">
+                        <label id="UnitSerialNo">Unit SerialNo:</label>
+                    </div>
+
+                    <div class="col-md-6" style="text-align:left">
+                        <input class=" form-control input-md" id="Operator" type="text">
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top:2%">
+                    <div class="col-md-2 col-md-offset-3">
+                        <button id="ReworkButton" class="btn btn-info btn-lg ">
+                            Rework
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

@@ -12,9 +12,6 @@ namespace UTS
     {
         public int TestTransactionID { get; set; }
 
-        
-       
-
         public int TestCycleID { get; set; }
         public virtual TestCycle TestCycle { get; set; }
 

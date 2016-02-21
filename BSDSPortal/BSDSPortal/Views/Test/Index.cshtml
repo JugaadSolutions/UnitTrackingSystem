@@ -1,32 +1,44 @@
-﻿
-@section menu{
+﻿@section menu{
     @Html.Partial("MenuView")
+ 
 }
 
-@section scripts{
+@section Scripts{
     <script type="text/javascript">
-   
+        $(document).ready(function () {
+            $('#LoginButton').on('click', function () {
+                var operatorInfo = {
+                    OperatorID: $('#Operator').val(),
+                    Department: "Test"
+
+                };
+                $.ajax({
+
+                    url: '@Url.Action("ValidateOperator", "Home")',
+                    data: "{'OperatorInfo':" + JSON.stringify(operatorInfo) + "}",
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json",
+                    error: function () { alert("Connection to Server Failed!!") },
+                    success: function (location) {
+                        //debugger;
+                        //if (location === "") {
+                        //    alert("Operator Unauthorized!!");
+                        //    return;
+                        //}
+                        var urlString = '@Url.Action("BaySelection", "Test", new { OperatorID = "Replace",Location = "Replace_2" ,Department="Testing" })';
+                        var opID = $('#Operator').val();
+
+                        var url = urlString.replace("Replace", opID);
+                        window.location.href = url.replace("Replace_2", location);
+                    }
+                })
+            });
+        });
     </script>
 }
-<div class="container">
-    <div class="row">
-        <div class="col-md-4" style="margin:4% 0% 0% 20%">
-            <label>Operator Id:</label>
-            <input type="text" class="form-control" id="OperatorId">
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4" style="margin-top:1%;margin-left:30%">
-
-            <button type="button" class="btn btn-info" id="loginbtn">
-                <span>Login</span>
-            </button>
-
-        </div>
-
-    </div>
-
-
-
+<div id="ContentDiv" class="roundedDiv container-fluid"
+     style="border:green medium solid;border-width:2px;height:100%">
+    @Html.Partial("OperatorLogin")
 </div>

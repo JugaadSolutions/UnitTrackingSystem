@@ -26,7 +26,13 @@ namespace BSDSPortal.Models
         public String Image { get; set; }
 
 
-        public virtual ICollection<TestUnit> TestUnits { get; set; }
+        public virtual ICollection<Unit> Units { get; set; }
 
+    }
+
+    public class ProductModelDTO
+    {
+        public int ProductModelID { get; set; }
+        public String Name { get; set; }
     }
 }

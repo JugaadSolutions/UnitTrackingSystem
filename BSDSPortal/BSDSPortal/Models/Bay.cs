@@ -7,7 +7,8 @@ using System.Web;
 
 namespace BSDSPortal.Models
 {
-    public enum BAY_STATUS { OK = 1, BREAKDOWN = 2 };
+    public enum BAY_TYPE { MVA_1 =1 , KVA_500 = 2,KVA_250=3 };
+    public enum BAY_STATUS { IDLE = 1,INUSE=2, BREAKDOWN = 3  };
 
     public class Bay
     {
@@ -18,11 +19,18 @@ namespace BSDSPortal.Models
         [Display(Name = "Bay Name")]
         public String Name { get; set; }
         public BAY_STATUS Status { get; set; }
+        public BAY_TYPE Type { get; set; }
+       
 
-        public int TesterID { get; set; }
-        public virtual Tester Tester { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
+      
+    }
 
-        public virtual ICollection<TestTransaction> TestTransactions { get; set; }
-        public virtual ICollection<BayBreakdown> BayBreakdowns { get; set; }
+
+    public class BayDTO
+    {
+       
+        public String Name { get; set; }
+        public int Status { get; set; }
     }
 }

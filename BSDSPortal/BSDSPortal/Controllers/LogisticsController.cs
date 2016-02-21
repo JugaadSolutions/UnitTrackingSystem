@@ -13,9 +13,13 @@ namespace BSDSPortal.Controllers
         {
             return View();
         }
-        public ActionResult UnitStatusUpdate(string id)
+        public ActionResult UnitStatusUpdate(string OperatorID, String Location)
         {
+            ViewBag.Operator = OperatorID;
+            ViewBag.Location = Location;
             return View();
         }
+
+     
     }
 }
